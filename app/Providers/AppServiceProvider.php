@@ -5,6 +5,7 @@ namespace App\Providers;
 use App\Services\LaporanService;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Facades\URL;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -24,5 +25,12 @@ class AppServiceProvider extends ServiceProvider
 
         // Strict mode di development
         Model::shouldBeStrict(! app()->isProduction());
+
+        // Render (dan PaaS lain) terminasi HTTPS di reverse proxy, jadi Laravel
+        // melihat request masuk sebagai HTTP biasa — paksa skema https di production
+        // supaya asset()/url() tidak generate link http:// yang diblokir browser (mixed content).
+        if (app()->isProduction()) {
+            URL::forceScheme('https');
+        }
     }
 }
