@@ -50,16 +50,18 @@
 
     {{-- Panel: Tren Laporan (Bulanan + Tahunan) --}}
     <div class="tren-panel" data-panel="tren">
-        <div class="chart-grid-2">
-            <div class="card">
-                <div class="card-title"><i class="fa-solid fa-chart-column"></i> Statistik Bulanan</div>
-                <p class="chart-desc">Jumlah laporan terverifikasi setiap bulan (akumulasi seluruh tahun).</p>
-                <canvas id="chartBulanan" height="220"></canvas>
+        <div class="card">
+            <div class="card-title"><i class="fa-solid fa-chart-column"></i> Statistik Bulanan</div>
+            <p class="chart-desc">Jumlah laporan terverifikasi setiap bulan (akumulasi seluruh tahun).</p>
+            <div class="chart-fixed-height">
+                <canvas id="chartBulanan"></canvas>
             </div>
-            <div class="card">
-                <div class="card-title"><i class="fa-solid fa-chart-line"></i> Statistik Tahunan</div>
-                <p class="chart-desc">Tren jumlah laporan terverifikasi dari tahun ke tahun.</p>
-                <canvas id="chartTahunan" height="220"></canvas>
+        </div>
+        <div class="card">
+            <div class="card-title"><i class="fa-solid fa-chart-line"></i> Tren Penampakan Dugong per Tahun</div>
+            <p class="chart-desc">Jumlah penampakan terverifikasi per tahun, dipisah berdasarkan kondisi dugong.</p>
+            <div class="chart-fixed-height">
+                <canvas id="chartTahunan"></canvas>
             </div>
         </div>
     </div>
@@ -133,7 +135,6 @@
 @endsection
 
 @push('styles')
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 <style>
 .stat-grid-5 { grid-template-columns: repeat(5, 1fr); }
 @media (max-width: 992px) { .stat-grid-5 { grid-template-columns: repeat(3, 1fr); } }
@@ -152,10 +153,12 @@
 .tren-tab:hover { color:var(--primary,#005F73); }
 .tren-tab.active { color:var(--primary,#005F73); border-bottom-color:var(--primary,#005F73); }
 
-.chart-grid-2 { display:grid; grid-template-columns: 1fr 1fr; gap:1.25rem; margin-bottom:1.5rem; }
-@media (max-width: 900px) { .chart-grid-2 { grid-template-columns: 1fr; } }
-
 .chart-desc { font-size:.8rem; color:var(--text-muted); margin:-6px 0 1rem; line-height:1.5; }
+
+/* Wajib ada tinggi CSS yang pasti untuk canvas Chart.js dengan maintainAspectRatio:false —
+   tanpa ini, canvas & parent-nya bisa saling membesar tanpa henti (loop resize) sampai
+   memakan RAM berlebihan dan bikin halaman berat/lag. */
+.chart-fixed-height { position:relative; height:260px; width:100%; }
 
 #peta-wilayah { width:100%; height:380px; position:relative; z-index:0; }
 .leaflet-pane,.leaflet-tile-pane,.leaflet-overlay-pane{z-index:1!important;}
@@ -186,10 +189,30 @@
 
 @push('scripts')
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+/* Leaflet (peta) baru dimuat kalau tab "Wilayah Prioritas" benar-benar diklik —
+   supaya kunjungan yang tidak pernah buka tab itu tidak ikut download library peta (~150KB). */
+let leafletPromise = null;
+function muatLeaflet() {
+    if (leafletPromise) return leafletPromise;
+    leafletPromise = new Promise((resolve, reject) => {
+        const css = document.createElement('link');
+        css.rel = 'stylesheet';
+        css.href = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.css';
+        document.head.appendChild(css);
+
+        const script = document.createElement('script');
+        script.src = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.js';
+        script.onload = () => resolve();
+        script.onerror = () => reject(new Error('Gagal memuat Leaflet'));
+        document.body.appendChild(script);
+    });
+    return leafletPromise;
+}
+</script>
 <script>
 const bulananData = @json($bulanan);
-const tahunanData = @json($tahunan);
+const tahunanKondisiData = @json($tahunanPerKondisi);
 const kondisiData  = @json($kondisiDugong);
 const petaWilayah  = @json($petaWilayah);
 
@@ -219,25 +242,41 @@ function initTren() {
     new Chart(document.getElementById('chartTahunan').getContext('2d'), {
         type: 'line',
         data: {
-            labels: tahunanData.map(t => t.tahun),
-            datasets: [{
-                label: 'Jumlah Laporan',
-                data: tahunanData.map(t => t.jumlah),
-                borderColor: '#005F73',
-                backgroundColor: 'rgba(0,95,115,.12)',
-                borderWidth: 2.5, pointRadius: 4, pointBackgroundColor:'#005F73',
-                tension: .35, fill: true,
-            }]
+            labels: tahunanKondisiData.map(t => t.tahun),
+            datasets: [
+                {
+                    label: 'Hidup',
+                    data: tahunanKondisiData.map(t => t.hidup),
+                    borderColor: '#2196F3', backgroundColor: '#2196F3',
+                    borderWidth: 2.5, pointRadius: 4, tension: .3, fill: false,
+                },
+                {
+                    label: 'Mati (Terdampar)',
+                    data: tahunanKondisiData.map(t => t.mati_terdampar),
+                    borderColor: '#424242', backgroundColor: '#424242',
+                    borderWidth: 2.5, pointRadius: 4, tension: .3, fill: false,
+                },
+                {
+                    label: 'Mati (Tertangkap)',
+                    data: tahunanKondisiData.map(t => t.mati_tertangkap),
+                    borderColor: '#E65100', backgroundColor: '#E65100',
+                    borderWidth: 2.5, pointRadius: 4, tension: .3, fill: false,
+                },
+            ]
         },
         options: {
             responsive:true, maintainAspectRatio:false,
-            plugins:{ legend:{display:false} },
-            scales:{ x:{grid:{display:false}}, y:{beginAtZero:true, ticks:{stepSize:1}} }
+            plugins:{ legend:{display:true, position:'bottom'} },
+            scales:{
+                x:{ grid:{display:false}, title:{display:true, text:'Tahun'} },
+                y:{ beginAtZero:true, ticks:{stepSize:1}, title:{display:true, text:'Jumlah Penampakan'} }
+            }
         }
     });
 }
 
-function initWilayah() {
+async function initWilayah() {
+    await muatLeaflet();
     mapWilayah = L.map('peta-wilayah', {
         center: [0.9800, 104.5000],
         zoom: 10, minZoom: 8, maxZoom: 18,

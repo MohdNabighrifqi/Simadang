@@ -23,6 +23,20 @@ class StatistikController extends Controller
 
         $statistik = $exportSvc->hitungStatistik($verified);
 
+        $tahunanPerKondisi = $verified
+            ->filter(fn ($l) => $l->tanggal)
+            ->groupBy(fn ($l) => $l->tanggal->format('Y'))
+            ->map(function ($grup, $tahun) {
+                return [
+                    'tahun'           => $tahun,
+                    'hidup'           => $grup->filter(fn ($l) => $l->kondisi?->nama === 'hidup')->count(),
+                    'mati_terdampar'  => $grup->filter(fn ($l) => $l->kondisi?->nama === 'mati_terdampar')->count(),
+                    'mati_tertangkap' => $grup->filter(fn ($l) => $l->kondisi?->nama === 'mati_tertangkap')->count(),
+                ];
+            })
+            ->sortKeys()
+            ->values();
+
         $rentangTahun = [
             'dari'   => $statistik['tahunan']->min('tahun') ?? date('Y'),
             'sampai' => $statistik['tahunan']->max('tahun') ?? date('Y'),
@@ -47,6 +61,7 @@ class StatistikController extends Controller
             'rentangTahun'     => $rentangTahun,
             'bulanan'          => $statistik['bulanan'],
             'tahunan'          => $statistik['tahunan'],
+            'tahunanPerKondisi' => $tahunanPerKondisi,
             'wilayahPrioritas' => $statistik['wilayahPrioritas'],
             'kondisiDugong'    => $statistik['kondisiDugong'],
             'petaWilayah'      => $petaWilayah,
