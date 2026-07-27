@@ -132,6 +132,33 @@
     .hero-visual { display: none; }
     .beranda-hero { min-height: auto; }
 }
+
+/* ── KONTAK ── */
+.kontak-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.2rem; margin-bottom: 2.5rem;
+}
+.kontak-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    display: flex; gap: 1rem; align-items: flex-start;
+    transition: box-shadow .2s;
+}
+.kontak-card:hover { box-shadow: var(--shadow); }
+.kontak-icon {
+    width: 44px; height: 44px;
+    border-radius: 10px;
+    background: var(--primary-light,#E0F0F4);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--primary,#005F73); font-size: 1.1rem;
+    flex-shrink: 0;
+}
+.kontak-card h4 { font-size: .9rem; font-weight: 700; color: var(--text); margin-bottom: .3rem; }
+.kontak-card p  { font-size: .8rem; color: var(--text-muted); line-height: 1.6; margin-bottom: .4rem; }
+.kontak-card a  { color: var(--primary,#005F73); font-size: .8rem; font-weight: 500; }
 </style>
 @endpush
 
@@ -302,6 +329,45 @@
             <div class="step-num">3</div>
             <h4>Kirim & Pantau Status</h4>
             <p>Kirim laporan Anda, lalu pantau status verifikasinya kapan saja lewat halaman Riwayat Laporan.</p>
+        </div>
+    </div>
+
+    {{-- ══ KONTAK ══ --}}
+    <div style="text-align:center;margin:2.5rem 0 1.5rem;">
+        <div class="sec-eyebrow"><i class="fa-solid fa-address-book"></i> Hubungi Kami</div>
+        <h2 class="sec-title" style="margin-bottom:.4rem;">Lembaga Konservasi Terkait</h2>
+        <p class="sec-sub" style="margin:0 auto;">Untuk pelaporan darurat, informasi lebih lanjut, atau kerjasama program konservasi.</p>
+    </div>
+    <div class="kontak-grid">
+        <div class="kontak-card">
+            <div class="kontak-icon"><i class="fa-solid fa-building-columns"></i></div>
+            <div>
+                <h4>BPSPL Padang (Wil. Kepri)</h4>
+                <p>Balai Pengelolaan Sumber Daya Pesisir dan Laut, Kementerian Kelautan dan Perikanan</p>
+                <a href="mailto:bpspl.padang@kkp.go.id">
+                    <i class="fa-solid fa-envelope"></i> bpspl.padang@kkp.go.id
+                </a>
+            </div>
+        </div>
+        <div class="kontak-card">
+            <div class="kontak-icon"><i class="fa-solid fa-leaf"></i></div>
+            <div>
+                <h4>WWF Indonesia</h4>
+                <p>World Wide Fund for Nature — Program Kelautan dan Pesisir Indonesia</p>
+                <a href="mailto:info@wwf.id">
+                    <i class="fa-solid fa-envelope"></i> info@wwf.id
+                </a>
+            </div>
+        </div>
+        <div class="kontak-card">
+            <div class="kontak-icon"><i class="fa-solid fa-fish"></i></div>
+            <div>
+                <h4>SiKoDung — Laporan Online</h4>
+                <p>Laporkan penampakan dugong atau kondisi habitat langsung melalui sistem ini</p>
+                <a href="{{ route('laporan.create') }}">
+                    <i class="fa-solid fa-arrow-right"></i> Buat Laporan Sekarang
+                </a>
+            </div>
         </div>
     </div>
 

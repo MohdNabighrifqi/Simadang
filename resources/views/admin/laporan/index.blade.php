@@ -118,29 +118,10 @@
                         <td>{{ $lap->nama_pelapor ?? $lap->user?->name ?? '—' }}</td>
                         <td>@include('partials.badge-status', ['status' => $lap->status])</td>
                         <td>
-                            <div style="display:flex;gap:4px;">
-                                <a href="{{ route('admin.laporan.show', $lap->id) }}"
-                                   class="btn btn-gray btn-sm" title="Detail">
-                                    <i class="fa-solid fa-eye"></i>
-                                </a>
-                                <a href="{{ route('admin.laporan.edit', $lap->id) }}"
-                                   class="btn btn-sm"
-                                   style="background:var(--primary-light,#E0F0F4);color:var(--primary,#005F73);border:none;"
-                                   title="Edit">
-                                    <i class="fa-solid fa-pen"></i>
-                                </a>
-                                <form method="POST"
-                                      action="{{ route('admin.laporan.destroy', $lap->id) }}"
-                                      style="margin:0;"
-                                      onsubmit="return confirm('Hapus laporan {{ $lap->kode }}?')">
-                                    @csrf @method('DELETE')
-                                    <button type="submit" class="btn btn-sm"
-                                            style="background:var(--coral-light);color:var(--coral);border:none;"
-                                            title="Hapus">
-                                        <i class="fa-solid fa-trash"></i>
-                                    </button>
-                                </form>
-                            </div>
+                            <a href="{{ route('admin.laporan.show', $lap->id) }}"
+                               class="btn btn-gray btn-sm" title="Detail">
+                                <i class="fa-solid fa-eye"></i> Detail
+                            </a>
                         </td>
                     </tr>
                     @empty
