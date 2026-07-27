@@ -74,11 +74,7 @@ FILESYSTEM_DISK=local
 
 ## 6. Setelah deploy pertama berhasil
 
-Buka **Shell** di dashboard Render (atau jalankan sebagai bagian dari build/start command), jalankan:
-```bash
-php artisan migrate --force
-php artisan storage:link
-```
+Tidak perlu langkah manual — instance **Free** Render tidak punya akses Shell, jadi `Dockerfile` sudah diatur supaya `php artisan migrate --force` otomatis jalan setiap kali container start (aman diulang, tidak akan duplikat data), dan `storage:link` sudah dijalankan saat build image.
 
 ## Catatan lain
 - File `database/sikodung.sql` di repo ini adalah skrip import lama (skema sebelum dinormalisasi) — **tidak dipakai lagi** dan tidak akan cocok dengan struktur tabel sekarang. Aman diabaikan, atau boleh dihapus.
