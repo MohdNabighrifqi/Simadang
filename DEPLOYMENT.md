@@ -16,16 +16,16 @@ Kode sudah disiapkan (git repo lokal sudah dibuat). Langkah selanjutnya butuh ka
 
 ## 2. Buat database MySQL gratis
 
-Pilih salah satu:
-- **db4free.net** (punya phpMyAdmin bawaan, cocok kalau mau tetap pakai phpMyAdmin) — daftar di https://www.db4free.net/signup.php
-- **Clever Cloud** — daftar di https://www.clever-cloud.com, buat addon MySQL "DEV" (gratis, ~5MB)
+Gunakan **Clever Cloud** — daftar di https://www.clever-cloud.com, buat addon MySQL "DEV" (gratis, ~5MB).
+
+> ⚠️ Sebelumnya panduan ini menyarankan db4free.net, tapi domain tersebut sudah tidak lagi menjadi layanan database (kontennya sudah berubah total, tidak jelas kepemilikannya sekarang) — **jangan gunakan/daftar di sana**.
 
 Setelah dibuat, catat: **host**, **port**, **nama database**, **username**, **password**.
 
 ## 3. Pindahkan data
 
 1. Buka phpMyAdmin lokal (XAMPP) → database `sikodung` → tab **Export** → format SQL → download.
-2. Buka phpMyAdmin dari provider baru (atau arahkan phpMyAdmin lokal ke host baru via `C:\xampp\phpMyAdmin\config.inc.php`) → buat database kosong → tab **Import** → upload file tadi.
+2. Arahkan phpMyAdmin lokal ke host Clever Cloud (edit `C:\xampp\phpMyAdmin\config.inc.php`, ganti `host` ke alamat dari Clever Cloud) → buat database kosong → tab **Import** → upload file tadi.
 
 ## 4. Deploy ke Render
 
