@@ -116,10 +116,10 @@
 
     {{-- Desktop Right --}}
     <div class="navbar-end navbar-end-desktop">
+        <a href="{{ route('laporan.create') }}" class="btn btn-primary btn-sm">
+            <i class="fa-solid fa-triangle-exclamation"></i> Laporkan!
+        </a>
         @if($isGuest)
-            <a href="{{ route('laporan.create') }}" class="btn btn-primary btn-sm">
-                <i class="fa-solid fa-triangle-exclamation"></i> Laporkan!
-            </a>
             <a href="{{ route('login') }}" class="btn-nav-masuk">
                 <i class="fa-solid fa-right-to-bracket"></i> Login
             </a>
