@@ -448,7 +448,7 @@
 <div class="info-section" style="padding-top:3rem;">
     <div class="split">
         <div class="split-img">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/Dugong_at_Marsa_Alam.jpg/800px-Dugong_at_Marsa_Alam.jpg"
+            <img src="{{ asset('images/Dugong.jpg') }}"
                  alt="Dugong berenang"
                  onerror="this.parentElement.innerHTML='<div class=\'split-img-placeholder\'><i class=\'fa-solid fa-fish\'></i></div>'">
             <div class="split-img-caption">Dugong dugon, mamalia laut dilindungi</div>
@@ -478,7 +478,7 @@
     {{-- ══ HABITAT ══ --}}
     <div class="split reverse">
         <div class="split-img">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Seagrass_meadow.jpg/800px-Seagrass_meadow.jpg"
+            <img src="{{ asset('images/Padang Lamun.jpg') }}"
                  alt="Padang lamun"
                  onerror="this.parentElement.innerHTML='<div class=\'split-img-placeholder\'><i class=\'fa-solid fa-leaf\'></i></div>'">
             <div class="split-img-caption">Padang lamun, sumber makanan utama dugong</div>
