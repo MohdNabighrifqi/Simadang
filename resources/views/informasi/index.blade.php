@@ -451,12 +451,12 @@
             <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/Dugong_at_Marsa_Alam.jpg/800px-Dugong_at_Marsa_Alam.jpg"
                  alt="Dugong berenang"
                  onerror="this.parentElement.innerHTML='<div class=\'split-img-placeholder\'><i class=\'fa-solid fa-fish\'></i></div>'">
-            <div class="split-img-caption">Dugong dugon — mamalia laut dilindungi</div>
+            <div class="split-img-caption">Dugong dugon, mamalia laut dilindungi</div>
         </div>
         <div class="split-body">
             <div class="sec-eyebrow"><i class="fa-solid fa-circle-info"></i> Apa itu Dugong?</div>
             <h2 class="sec-title">Mamalia Laut Penjaga Ekosistem Pesisir</h2>
-            <p>Dugong (<em>Dugong dugon</em>) adalah mamalia laut dalam ordo Sirenia — satu-satunya anggota keluarga Dugongidae yang masih hidup hingga saat ini.</p>
+            <p>Dugong (<em>Dugong dugon</em>) adalah mamalia laut dalam ordo Sirenia, satu-satunya anggota keluarga Dugongidae yang masih hidup hingga saat ini.</p>
             <p>Berbeda dengan ikan, dugong bernapas menggunakan paru-paru dan harus naik ke permukaan secara berkala. Mereka sepenuhnya bergantung pada ekosistem padang lamun untuk bertahan hidup.</p>
             <div class="fact-list">
                 <div class="fact-item">
@@ -465,11 +465,11 @@
                 </div>
                 <div class="fact-item">
                     <div class="fact-icon"><i class="fa-solid fa-lungs"></i></div>
-                    <span>Bernapas dengan paru-paru — harus naik ke permukaan setiap beberapa menit</span>
+                    <span>Bernapas dengan paru-paru, harus naik ke permukaan setiap beberapa menit</span>
                 </div>
                 <div class="fact-item">
                     <div class="fact-icon"><i class="fa-solid fa-baby"></i></div>
-                    <span>Reproduksi sangat lambat — betina melahirkan 1 anak setiap 3 hingga 7 tahun</span>
+                    <span>Reproduksi sangat lambat, betina melahirkan 1 anak setiap 3 hingga 7 tahun</span>
                 </div>
             </div>
         </div>
@@ -481,13 +481,13 @@
             <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Seagrass_meadow.jpg/800px-Seagrass_meadow.jpg"
                  alt="Padang lamun"
                  onerror="this.parentElement.innerHTML='<div class=\'split-img-placeholder\'><i class=\'fa-solid fa-leaf\'></i></div>'">
-            <div class="split-img-caption">Padang lamun — sumber makanan utama dugong</div>
+            <div class="split-img-caption">Padang lamun, sumber makanan utama dugong</div>
         </div>
         <div class="split-body">
             <div class="sec-eyebrow"><i class="fa-solid fa-seedling"></i> Habitat & Makanan</div>
             <h2 class="sec-title">Hidup di Padang Lamun yang Jernih</h2>
             <p>Dugong sangat bergantung pada padang lamun (<em>seagrass</em>) sebagai makanan utama. Mereka merumput di dasar laut, mengonsumsi lamun beserta akar-akarnya.</p>
-            <p>Di perairan Bintan, padang lamun tersebar di lokasi-lokasi seperti Busung, Pengudang, Pangkil, dan Penaga — semua menjadi habitat penting dugong.</p>
+            <p>Di perairan Bintan, padang lamun tersebar di lokasi-lokasi seperti Busung, Pengudang, Pangkil, dan Penaga, semua menjadi habitat penting dugong.</p>
             <div class="fact-list">
                 <div class="fact-item">
                     <div class="fact-icon"><i class="fa-solid fa-water"></i></div>
@@ -499,7 +499,7 @@
                 </div>
                 <div class="fact-item">
                     <div class="fact-icon"><i class="fa-solid fa-droplet"></i></div>
-                    <span>Sangat sensitif terhadap polusi — membutuhkan air yang jernih dan bersih</span>
+                    <span>Sangat sensitif terhadap polusi, membutuhkan air yang jernih dan bersih</span>
                 </div>
             </div>
         </div>
@@ -515,7 +515,7 @@
             <p>IUCN Red List menetapkan dugong berstatus <strong>Vulnerable</strong> secara global. Di Indonesia, dugong dilindungi penuh oleh <strong>UU No. 5 Tahun 1990</strong> dan PP No. 7 Tahun 1999 tentang Pengawetan Jenis Tumbuhan dan Satwa.</p>
             <div class="iucn-badge">
                 <i class="fa-solid fa-shield-halved"></i>
-                Vulnerable — IUCN Red List
+                Vulnerable - IUCN Red List
             </div>
             <div class="threat-grid">
                 <div class="threat-item">
@@ -577,7 +577,7 @@
         <div style="text-align:center;margin-bottom:2.5rem;">
             <div class="sec-eyebrow"><i class="fa-solid fa-hand-holding-heart"></i> Aksi Nyata</div>
             <h2 class="sec-title" style="margin-bottom:.5rem;">Bagaimana Anda Bisa Membantu?</h2>
-            <p class="sec-sub" style="margin:0 auto;">Konservasi dugong bukan hanya tugas pemerintah — setiap individu bisa membuat perubahan nyata di lapangan.</p>
+            <p class="sec-sub" style="margin:0 auto;">Konservasi dugong bukan hanya tugas pemerintah, setiap individu bisa membuat perubahan nyata di lapangan.</p>
         </div>
         <div class="steps-grid">
             <div class="step-card">
@@ -607,7 +607,7 @@
     <div style="text-align:center;margin-bottom:2.5rem;">
         <div class="sec-eyebrow"><i class="fa-solid fa-circle-question"></i> Dukungan & Informasi</div>
         <h2 class="sec-title" style="margin-bottom:.4rem;">Pertanyaan yang Sering Diajukan</h2>
-        <p class="sec-sub" style="margin:0 auto;">Temukan jawaban seputar pelaporan, verifikasi, dan data dugong di SiKoDung.</p>
+        <p class="sec-sub" style="margin:0 auto;">Temukan jawaban seputar pelaporan, verifikasi, dan data dugong di Simadang.</p>
     </div>
     <div class="faq-grid" id="faqAccordion">
         <div class="faq-item">
@@ -620,7 +620,7 @@
         </div>
         <div class="faq-item">
             <div class="faq-question">Kenapa dugong yang masih hidup juga perlu dilaporkan? <i class="fa-solid fa-chevron-down"></i></div>
-            <div class="faq-answer"><div class="faq-answer-inner">Data dugong hidup justru paling dibutuhkan untuk menganalisis pola ruaya dan sebaran populasi — bukan hanya laporan dugong yang terdampar atau mati.</div></div>
+            <div class="faq-answer"><div class="faq-answer-inner">Data dugong hidup justru paling dibutuhkan untuk menganalisis pola ruaya dan sebaran populasi, bukan hanya laporan dugong yang terdampar atau mati.</div></div>
         </div>
         <div class="faq-item">
             <div class="faq-question">Berapa lama laporan saya diverifikasi? <i class="fa-solid fa-chevron-down"></i></div>
@@ -632,15 +632,15 @@
         </div>
         <div class="faq-item">
             <div class="faq-question">Apa yang harus dilakukan jika menemukan dugong terdampar atau tersangkut jaring? <i class="fa-solid fa-chevron-down"></i></div>
-            <div class="faq-answer"><div class="faq-answer-inner">Segera hubungi BPSPL Padang atau instansi terkait untuk penanganan darurat, lalu laporkan kejadiannya di SiKoDung dengan foto/video sebagai bukti.</div></div>
+            <div class="faq-answer"><div class="faq-answer-inner">Segera hubungi BPSPL Padang atau instansi terkait untuk penanganan darurat, lalu laporkan kejadiannya di Simadang dengan foto/video sebagai bukti.</div></div>
         </div>
         <div class="faq-item">
             <div class="faq-question">Siapa yang bisa dihubungi untuk kondisi darurat? <i class="fa-solid fa-chevron-down"></i></div>
             <div class="faq-answer"><div class="faq-answer-inner">Hubungi BPSPL Padang (Wil. Kepri) di bpspl.padang@kkp.go.id atau lihat direktori kontak lembaga konservasi di halaman Beranda.</div></div>
         </div>
         <div class="faq-item">
-            <div class="faq-question">Apakah SiKoDung bisa diakses lewat HP? <i class="fa-solid fa-chevron-down"></i></div>
-            <div class="faq-answer"><div class="faq-answer-inner">Bisa. SiKoDung berbasis web sepenuhnya dan bisa diakses dari browser HP Android maupun laptop/desktop, tanpa perlu instalasi aplikasi tambahan.</div></div>
+            <div class="faq-question">Apakah Simadang bisa diakses lewat HP? <i class="fa-solid fa-chevron-down"></i></div>
+            <div class="faq-answer"><div class="faq-answer-inner">Bisa. Simadang berbasis web sepenuhnya dan bisa diakses dari browser HP Android maupun laptop/desktop, tanpa perlu instalasi aplikasi tambahan.</div></div>
         </div>
     </div>
 

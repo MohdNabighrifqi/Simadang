@@ -5,7 +5,7 @@
 
 <div class="page-header">
     <h2>Dashboard Admin</h2>
-    <p>Kelola laporan, pengguna, dan permintaan data sistem SiKoDung.</p>
+    <p>Kelola laporan, pengguna, dan permintaan data sistem Simadang.</p>
 </div>
 
 {{-- Statistik --}}
@@ -85,13 +85,13 @@
                     <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px;">
                         <div>
                             <div class="table-mono">{{ $lap->kode }}</div>
-                            <div style="font-size:.875rem;font-weight:500;margin-top:2px;">{{ $lap->lokasi?->nama ?? '—' }}</div>
+                            <div style="font-size:.875rem;font-weight:500;margin-top:2px;">{{ $lap->lokasi?->nama ?? '-' }}</div>
                         </div>
                         @include('partials.badge-status',['status'=>$lap->status])
                     </div>
                     <div style="font-size:.75rem;color:var(--text-muted);margin-top:5px;">
                         {{ \Carbon\Carbon::parse($lap->tanggal)->translatedFormat('d M Y') }}
-                        · {{ $lap->nama_pelapor ?? $lap->user?->name ?? '—' }}
+                        · {{ $lap->nama_pelapor ?? $lap->user?->name ?? '-' }}
                     </div>
                     <div style="margin-top:6px;font-size:.75rem;color:var(--primary);font-weight:500;">
                         Tap untuk detail & verifikasi
@@ -129,11 +129,11 @@
                             @if($k==='hidup') <span style="color:#0A9396;font-size:.78rem;font-weight:600;">Hidup</span>
                             @elseif($k==='mati_terdampar') <span style="color:#374151;font-size:.78rem;font-weight:600;">Terdampar</span>
                             @elseif($k==='mati_tertangkap') <span style="color:#AE2012;font-size:.78rem;font-weight:600;">Tertangkap</span>
-                            @else <span style="color:var(--text-muted);font-size:.78rem;">—</span>
+                            @else <span style="color:var(--text-muted);font-size:.78rem;">-</span>
                             @endif
                         </td>
-                        <td>{{ $lap->lokasi?->nama ?? '—' }}</td>
-                        <td style="color:var(--text-muted);font-size:.85rem;">{{ $lap->nama_pelapor ?? $lap->user?->name ?? '—' }}</td>
+                        <td>{{ $lap->lokasi?->nama ?? '-' }}</td>
+                        <td style="color:var(--text-muted);font-size:.85rem;">{{ $lap->nama_pelapor ?? $lap->user?->name ?? '-' }}</td>
                         <td>
                             <a href="{{ route('admin.laporan.show',$lap->id) }}" class="btn btn-gray btn-sm">
                                 <i class="fa-solid fa-eye"></i> Detail
@@ -201,7 +201,7 @@
                     <tr>
                         <td style="font-weight:500;">{{ $p->nama_pemohon }}</td>
                         <td style="font-size:.85rem;color:var(--text-muted);">{{ $p->email_pemohon }}</td>
-                        <td style="font-size:.85rem;">{{ $p->institusi ?? '—' }}</td>
+                        <td style="font-size:.85rem;">{{ $p->institusi ?? '-' }}</td>
                         <td style="font-size:.85rem;font-weight:500;">{{ $p->jenis_data_label }}</td>
                         <td style="font-size:.85rem;max-width:180px;">{{ \Illuminate\Support\Str::limit($p->tujuan,45) }}</td>
                         <td>
@@ -276,7 +276,7 @@
                         <td style="color:var(--text-muted);">{{ $i+1 }}</td>
                         <td style="font-weight:500;">{{ $user->name }}</td>
                         <td style="color:var(--text-muted);font-size:.85rem;">{{ $user->email }}</td>
-                        <td>{{ $user->daerah ?? '—' }}</td>
+                        <td>{{ $user->daerah ?? '-' }}</td>
                         <td>
                             @if($user->role==='admin')
                                 <span class="badge badge-info">Admin</span>

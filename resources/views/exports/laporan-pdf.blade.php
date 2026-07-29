@@ -45,7 +45,7 @@
 <body>
 
 <div class="header">
-    <h1>SiKoDung — {{ $judulDokumen }}</h1>
+    <h1>Simadang - {{ $judulDokumen }}</h1>
     <p>Sistem Informasi Konservasi Dugong Bintan · Dihasilkan {{ now()->translatedFormat('d F Y, H:i') }} WIB</p>
 </div>
 
@@ -202,14 +202,14 @@
         @foreach($laporan as $l)
             <tr>
                 <td>{{ $l->kode }}</td>
-                <td>{{ $l->tanggal?->format('d-m-Y') ?? '—' }}</td>
+                <td>{{ $l->tanggal?->format('d-m-Y') ?? '-' }}</td>
                 <td>{{ $l->jenis?->nama === 'dugong' ? 'Dugong' : 'Habitat' }}</td>
-                <td>{{ $l->lokasi?->nama ?? '—' }}</td>
-                <td>{{ $l->latitude ?? $l->lokasi?->latitude ?? '—' }}</td>
-                <td>{{ $l->longitude ?? $l->lokasi?->longitude ?? '—' }}</td>
-                <td>{{ $l->jumlah_dugong ?? '—' }}</td>
-                <td>{{ match($l->kondisi?->nama) { 'hidup' => 'Hidup', 'mati_terdampar' => 'Mati Terdampar', 'mati_tertangkap' => 'Mati Tertangkap', default => '—' } }}</td>
-                <td>{{ $l->nama_pelapor ?? $l->user?->name ?? '—' }}</td>
+                <td>{{ $l->lokasi?->nama ?? '-' }}</td>
+                <td>{{ $l->latitude ?? $l->lokasi?->latitude ?? '-' }}</td>
+                <td>{{ $l->longitude ?? $l->lokasi?->longitude ?? '-' }}</td>
+                <td>{{ $l->jumlah_dugong ?? '-' }}</td>
+                <td>{{ match($l->kondisi?->nama) { 'hidup' => 'Hidup', 'mati_terdampar' => 'Mati Terdampar', 'mati_tertangkap' => 'Mati Tertangkap', default => '-' } }}</td>
+                <td>{{ $l->nama_pelapor ?? $l->user?->name ?? '-' }}</td>
                 <td>{{ ucfirst($l->status) }}</td>
             </tr>
         @endforeach
@@ -219,7 +219,7 @@
 @endif
 
 <div class="footer">
-    Dokumen ini dihasilkan otomatis oleh SiKoDung untuk kebutuhan monitoring dan pengambilan keputusan konservasi dugong di Kepulauan Riau.
+    Dokumen ini dihasilkan otomatis oleh Simadang untuk kebutuhan monitoring dan pengambilan keputusan konservasi dugong di Kepulauan Riau.
 </div>
 
 </body>

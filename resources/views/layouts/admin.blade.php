@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>@yield('title','Dashboard Admin') — SiKoDung</title>
+    <title>@yield('title','Dashboard Admin') - Simadang</title>
     <link rel="stylesheet" href="{{ asset('css/app.css') }}?v={{ filemtime(public_path('css/app.css')) }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
@@ -60,8 +60,8 @@
 
     <aside class="admin-sidebar" id="adminSidebar">
         <div class="admin-sidebar-brand">
-            <img src="{{ asset('images/Logo Sidugong.png') }}" alt="SiKoDung">
-            <span>SiKoDung</span>
+            <img src="{{ asset('images/Logo Sidugong.png') }}" alt="Simadang">
+            <span>Simadang</span>
             <button class="admin-sidebar-close" id="adminSidebarClose" aria-label="Tutup menu">
                 <i class="fa-solid fa-xmark"></i>
             </button>
@@ -94,7 +94,7 @@
         </nav>
 
         <div class="admin-sidebar-footer">
-            SiKoDung Admin &copy; {{ date('Y') }}
+            Simadang Admin &copy; {{ date('Y') }}
         </div>
     </aside>
     <div class="admin-overlay" id="adminOverlay"></div>
@@ -244,7 +244,7 @@ document.addEventListener('click', function(e) {
             if (lastTotal >= 0 && total > lastTotal) {
                 const selisih = total - lastTotal;
                 if (typeof Notification !== 'undefined' && Notification.permission === 'granted') {
-                    new Notification('SiKoDung — Laporan Baru', {
+                    new Notification('Simadang - Laporan Baru', {
                         body: `${selisih} laporan/permintaan baru menunggu tindakan Anda.`,
                         icon: '{{ asset('images/Logo Sidugong.png') }}',
                     });

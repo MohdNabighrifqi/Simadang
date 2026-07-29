@@ -116,7 +116,7 @@ class LaporanExportService
         $kolomAkhir = 'L';
 
         // ── Judul dokumen ──
-        $sheet->setCellValue('A1', 'Data Laporan Dugong Bintan — SiKoDung');
+        $sheet->setCellValue('A1', 'Data Laporan Dugong Bintan - Simadang');
         $sheet->mergeCells("A1:{$kolomAkhir}1");
         $sheet->getStyle('A1')->getFont()->setBold(true)->setSize(14)->setColor(new \PhpOffice\PhpSpreadsheet\Style\Color('FFFFFF'));
         $sheet->getStyle('A1')->getFill()->setFillType(Fill::FILL_SOLID)->getStartColor()->setARGB(self::TEAL);
@@ -205,7 +205,7 @@ class LaporanExportService
         $data = $this->hitungStatistik($laporan);
 
         // ── Judul dokumen ──
-        $sheet->setCellValue('A1', 'Statistik Konservasi Dugong Bintan — SiKoDung');
+        $sheet->setCellValue('A1', 'Statistik Konservasi Dugong Bintan - Simadang');
         $sheet->mergeCells('A1:C1');
         $sheet->getStyle('A1')->getFont()->setBold(true)->setSize(14)->setColor(new \PhpOffice\PhpSpreadsheet\Style\Color('FFFFFF'));
         $sheet->getStyle('A1')->getFill()->setFillType(Fill::FILL_SOLID)->getStartColor()->setARGB(self::TEAL);

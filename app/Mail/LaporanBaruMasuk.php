@@ -20,7 +20,7 @@ class LaporanBaruMasuk extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: '[SiKoDung] Laporan Baru Masuk — ' . $this->laporan->kode,
+            subject: '[Simadang] Laporan Baru Masuk - ' . $this->laporan->kode,
         );
     }
 

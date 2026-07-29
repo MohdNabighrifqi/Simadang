@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>@yield('title','SiKoDung') — Konservasi Dugong</title>
+    <title>@yield('title','Simadang') - Konservasi Dugong</title>
     <link rel="stylesheet" href="{{ asset('css/app.css') }}?v={{ filemtime(public_path('css/app.css')) }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
@@ -98,9 +98,9 @@
 <nav class="navbar">
     {{-- Brand --}}
     <a href="{{ $isAdmin ? route('admin.dashboard') : route('beranda') }}" class="navbar-brand">
-        <img src="{{ asset('images/Logo Sidugong.png') }}" alt="SiKoDung"
+        <img src="{{ asset('images/Logo Sidugong.png') }}" alt="Simadang"
              style="width:62px;height:62px;object-fit:contain;">
-        <span class="navbar-brand-text">SiKoDung</span>
+        <span class="navbar-brand-text">Simadang</span>
     </a>
 
     {{-- Desktop Nav — sama untuk publik, warga, maupun admin yang sedang menjelajah situs publik --}}
@@ -170,7 +170,7 @@
         <div style="display:flex;align-items:center;gap:8px;">
             <img src="{{ asset('images/Logo Sidugong.png') }}" alt=""
                  style="width:30px;height:30px;object-fit:contain;">
-            <span style="font-weight:700;font-size:1rem;color:#fff;">SiKoDung</span>
+            <span style="font-weight:700;font-size:1rem;color:#fff;">Simadang</span>
         </div>
         <button class="drawer-close" id="drawerClose"><i class="fa-solid fa-xmark"></i></button>
     </div>
@@ -259,10 +259,10 @@
     <div class="footer-inner">
         <div class="footer-col footer-brand">
             <div class="footer-logo">
-                <img src="{{ asset('images/Logo Sidugong.png') }}" alt="SiKoDung">
-                <span>SiKoDung</span>
+                <img src="{{ asset('images/Logo Sidugong.png') }}" alt="Simadang">
+                <span>Simadang</span>
             </div>
-            <p>Sistem Informasi Konservasi Dugong — memantau dan melindungi dugong beserta habitat padang lamun di perairan Bintan, Kepulauan Riau.</p>
+            <p>Sistem Informasi Konservasi Dugong, memantau dan melindungi dugong beserta habitat padang lamun di perairan Bintan, Kepulauan Riau.</p>
         </div>
 
         <div class="footer-col">
@@ -298,7 +298,7 @@
     </div>
 
     <div class="footer-bottom">
-        <span>&copy; {{ date('Y') }} SiKoDung — Konservasi Dugong Bintan.</span>
+        <span>&copy; {{ date('Y') }} Simadang, Konservasi Dugong Bintan.</span>
         <span>Dibangun untuk pelestarian ekosistem laut Kepulauan Riau.</span>
     </div>
 </footer>

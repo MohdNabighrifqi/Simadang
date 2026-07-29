@@ -19,14 +19,16 @@
         </a>
     </div>
 
-    <form method="GET" style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:1.2rem;">
-        <select name="status" class="form-control" style="width:auto;" onchange="this.form.submit()">
+    <form method="GET" class="filter-bar">
+        <select name="status" class="form-control" onchange="this.form.submit()">
             <option value="">Semua Status</option>
             <option value="menunggu"   {{ request('status')==='menunggu'   ?'selected':'' }}>Menunggu</option>
             <option value="disetujui"  {{ request('status')==='disetujui'  ?'selected':'' }}>Disetujui</option>
             <option value="ditolak"    {{ request('status')==='ditolak'    ?'selected':'' }}>Ditolak</option>
         </select>
-        <a href="{{ route('admin.permintaan.index') }}" class="btn btn-gray btn-sm">Reset</a>
+        <a href="{{ route('admin.permintaan.index') }}" class="filter-reset">
+            <i class="fa-solid fa-rotate-left"></i> Reset
+        </a>
     </form>
 
     {{-- Mobile --}}
@@ -62,7 +64,7 @@
                 <tr>
                     <td style="font-weight:500;">{{ $p->nama_pemohon }}</td>
                     <td style="font-size:.85rem;color:var(--text-muted);">{{ $p->email_pemohon }}</td>
-                    <td style="font-size:.85rem;">{{ $p->institusi ?? '—' }}</td>
+                    <td style="font-size:.85rem;">{{ $p->institusi ?? '-' }}</td>
                     <td style="font-size:.85rem;font-weight:500;">{{ $p->jenis_data_label }}</td>
                     <td style="font-size:.85rem;max-width:200px;">{{ \Illuminate\Support\Str::limit($p->tujuan,50) }}</td>
                     <td>

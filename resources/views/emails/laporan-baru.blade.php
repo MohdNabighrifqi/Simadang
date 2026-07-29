@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Laporan Baru — SiKoDung</title>
+    <title>Laporan Baru - Simadang</title>
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif; background: #F3F4F6; color: #111827; }
@@ -31,7 +31,7 @@
     <div class="card">
 
         <div class="header">
-            <h1>SiKoDung</h1>
+            <h1>Simadang</h1>
             <p>Sistem Informasi Konservasi Dugong Bintan</p>
         </div>
 
@@ -54,15 +54,15 @@
                 </div>
                 <div class="info-row">
                     <span class="info-label">Lokasi</span>
-                    <span class="info-val">{{ $laporan->lokasi?->nama ?? '—' }}</span>
+                    <span class="info-val">{{ $laporan->lokasi?->nama ?? '-' }}</span>
                 </div>
                 <div class="info-row">
                     <span class="info-label">Pelapor</span>
-                    <span class="info-val">{{ $laporan->nama_pelapor ?? '—' }}</span>
+                    <span class="info-val">{{ $laporan->nama_pelapor ?? '-' }}</span>
                 </div>
                 <div class="info-row">
                     <span class="info-label">No. HP</span>
-                    <span class="info-val">{{ $laporan->no_hp ?? '—' }}</span>
+                    <span class="info-val">{{ $laporan->no_hp ?? '-' }}</span>
                 </div>
             </div>
 
@@ -71,7 +71,7 @@
         </div>
 
         <div class="footer">
-            Email otomatis dari <a href="{{ route('beranda') }}">SiKoDung</a> — Sistem Informasi Konservasi Dugong Bintan
+            Email otomatis dari <a href="{{ route('beranda') }}">Simadang</a>, Sistem Informasi Konservasi Dugong Bintan
         </div>
     </div>
 </div>

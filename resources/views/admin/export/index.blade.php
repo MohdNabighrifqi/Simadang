@@ -66,7 +66,7 @@
             <div style="display:flex;gap:8px;align-items:center;">
                 <input type="number" name="periode_dari" min="2000" max="{{ date('Y') }}" class="form-control"
                        value="{{ request('periode_dari') }}" placeholder="Dari" onchange="this.form.submit()">
-                <span style="color:var(--text-muted);">—</span>
+                <span style="color:var(--text-muted);">-</span>
                 <input type="number" name="periode_sampai" min="2000" max="{{ date('Y') }}" class="form-control"
                        value="{{ request('periode_sampai') }}" placeholder="Sampai" onchange="this.form.submit()">
             </div>
@@ -90,7 +90,7 @@
         <i class="fa-solid fa-circle-info" style="color:var(--primary);font-size:1.3rem;"></i>
         <div>
             <strong style="color:var(--primary);">{{ $laporan->count() }} laporan</strong>
-            <span style="color:var(--text-muted);"> cocok dengan filter yang dipilih — pratinjau berikut mencerminkan isi berkas yang akan diunduh.</span>
+            <span style="color:var(--text-muted);"> cocok dengan filter yang dipilih, pratinjau berikut mencerminkan isi berkas yang akan diunduh.</span>
         </div>
     </div>
 </div>
@@ -99,7 +99,7 @@
 {{-- Preview Data Laporan --}}
 <div class="card card-flush">
     <div class="card-header">
-        <span class="card-title" style="margin-bottom:0;">Pratinjau — Data Laporan</span>
+        <span class="card-title" style="margin-bottom:0;">Pratinjau Data Laporan</span>
         <span style="font-size:.78rem;color:var(--text-muted);">Menampilkan {{ min(10, $laporan->count()) }} dari {{ $laporan->count() }} baris</span>
     </div>
     <div class="table-wrap">
@@ -118,9 +118,9 @@
                 @forelse($laporan->take(10) as $lap)
                 <tr>
                     <td class="table-mono">{{ $lap->kode }}</td>
-                    <td>{{ $lap->tanggal?->format('d-m-Y') ?? '—' }}</td>
+                    <td>{{ $lap->tanggal?->format('d-m-Y') ?? '-' }}</td>
                     <td>{{ $lap->jenis?->nama === 'dugong' ? 'Dugong' : 'Habitat' }}</td>
-                    <td>{{ $lap->lokasi?->nama ?? '—' }}</td>
+                    <td>{{ $lap->lokasi?->nama ?? '-' }}</td>
                     <td>{{ $lap->kondisi_label }}</td>
                     <td style="text-align:center;">@include('partials.badge-status', ['status' => $lap->status])</td>
                 </tr>
@@ -136,7 +136,7 @@
 @if($tipe === 'statistik')
 <div class="card" style="text-align:center;color:var(--text-muted);padding:2rem;">
     <i class="fa-solid fa-file-excel" style="font-size:1.5rem;margin-bottom:.5rem;display:block;color:var(--primary);"></i>
-    Berkas Data Statistik berisi ringkasan, tren bulanan &amp; tahunan, wilayah prioritas, dan kondisi dugong lengkap dengan grafik — unduh berkasnya untuk melihat visualisasinya.
+    Berkas Data Statistik berisi ringkasan, tren bulanan &amp; tahunan, wilayah prioritas, dan kondisi dugong lengkap dengan grafik. Unduh berkasnya untuk melihat visualisasinya.
 </div>
 @endif
 

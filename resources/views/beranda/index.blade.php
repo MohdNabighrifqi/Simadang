@@ -134,31 +134,71 @@
 }
 
 /* ── KONTAK ── */
+.kontak-panel {
+    background: var(--surface,#F8F9FA);
+    border: 1px solid var(--border);
+    border-radius: calc(var(--radius) + 4px);
+    padding: 1.6rem;
+    margin-bottom: 2.5rem;
+}
 .kontak-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 1.2rem; margin-bottom: 2.5rem;
+    gap: 1.1rem;
 }
 .kontak-card {
     background: var(--white);
     border: 1px solid var(--border);
-    border-radius: var(--radius);
-    padding: 1.5rem;
-    display: flex; gap: 1rem; align-items: flex-start;
-    transition: box-shadow .2s;
+    border-radius: var(--radius-sm);
+    padding: 1.3rem 1.3rem 1.1rem;
+    display: flex; flex-direction: column; gap: .9rem;
+    position: relative;
+    overflow: hidden;
+    transition: box-shadow .2s, transform .2s;
 }
-.kontak-card:hover { box-shadow: var(--shadow); }
+.kontak-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; bottom: 0; width: 4px;
+    background: var(--kontak-accent, var(--primary));
+}
+.kontak-card:hover { box-shadow: var(--shadow); transform: translateY(-3px); }
+.kontak-card-head { display: flex; gap: .8rem; align-items: flex-start; }
 .kontak-icon {
-    width: 44px; height: 44px;
+    width: 40px; height: 40px;
     border-radius: 10px;
-    background: var(--primary-light,#E0F0F4);
+    background: color-mix(in srgb, var(--kontak-accent, var(--primary)) 14%, white);
     display: flex; align-items: center; justify-content: center;
-    color: var(--primary,#005F73); font-size: 1.1rem;
+    color: var(--kontak-accent, var(--primary)); font-size: 1rem;
     flex-shrink: 0;
 }
-.kontak-card h4 { font-size: .9rem; font-weight: 700; color: var(--text); margin-bottom: .3rem; }
-.kontak-card p  { font-size: .8rem; color: var(--text-muted); line-height: 1.6; margin-bottom: .4rem; }
-.kontak-card a  { color: var(--primary,#005F73); font-size: .8rem; font-weight: 500; }
+.kontak-card h4 { font-size: .88rem; font-weight: 700; color: var(--text); margin-bottom: .25rem; }
+.kontak-card p  { font-size: .78rem; color: var(--text-muted); line-height: 1.6; }
+.kontak-tag {
+    display: inline-block;
+    font-size: .64rem; font-weight: 700; letter-spacing: .05em; text-transform: uppercase;
+    color: var(--kontak-accent, var(--primary));
+    margin-bottom: 2px;
+}
+.kontak-card .kontak-link {
+    display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+    margin-top: auto;
+    background: color-mix(in srgb, var(--kontak-accent, var(--primary)) 12%, white);
+    color: var(--kontak-accent, var(--primary));
+    font-size: .78rem; font-weight: 600;
+    padding: 8px 14px; border-radius: 8px;
+    text-decoration: none;
+    transition: background .18s;
+}
+.kontak-card .kontak-link:hover { background: var(--kontak-accent, var(--primary)); color: #fff; }
+.kontak-card.kontak-cta { background: var(--kontak-accent, var(--primary)); border-color: transparent; }
+.kontak-card.kontak-cta::before { display: none; }
+.kontak-card.kontak-cta .kontak-icon { background: rgba(255,255,255,.18); color: #fff; }
+.kontak-card.kontak-cta .kontak-tag { color: rgba(255,255,255,.75); }
+.kontak-card.kontak-cta h4 { color: #fff; }
+.kontak-card.kontak-cta p  { color: rgba(255,255,255,.8); }
+.kontak-card.kontak-cta .kontak-link { background: #fff; color: var(--kontak-accent, var(--primary)); }
+.kontak-card.kontak-cta .kontak-link:hover { background: rgba(255,255,255,.85); }
 </style>
 @endpush
 
@@ -301,7 +341,7 @@
             </div>
 
             <div class="card" style="margin:0;">
-                <div class="card-title" style="font-size:.875rem;margin-bottom:.5rem;">Tren Laporan — 12 Bulan Terakhir</div>
+                <div class="card-title" style="font-size:.875rem;margin-bottom:.5rem;">Tren Laporan 12 Bulan Terakhir</div>
                 <div class="bar-chart" id="bar-chart" style="height:80px;"></div>
                 <p style="font-size:.68rem;color:var(--text-muted);margin-top:.5rem;">Laporan baru dari masyarakat, tidak termasuk data historis.</p>
             </div>
@@ -311,7 +351,7 @@
     {{-- ALUR PELAPORAN --}}
     <div style="text-align:center;margin:2.5rem 0 1.5rem;">
         <div class="sec-eyebrow"><i class="fa-solid fa-route"></i> Panduan Singkat</div>
-        <h2 class="sec-title" style="margin-bottom:.4rem;">Alur Pelaporan — Cuma 3 Langkah</h2>
+        <h2 class="sec-title" style="margin-bottom:.4rem;">Alur Pelaporan, Cuma 3 Langkah</h2>
         <p class="sec-sub" style="margin:0 auto;">Baru pertama kali mau lapor? Ikuti langkah sederhana berikut ini.</p>
     </div>
     <div class="steps-grid">
@@ -328,7 +368,7 @@
         <div class="step-card">
             <div class="step-num">3</div>
             <h4>Kirim & Pantau Status</h4>
-            <p>Kirim laporan Anda, lalu pantau status verifikasinya kapan saja lewat halaman Riwayat Laporan.</p>
+            <p>Kirim laporan Anda, lalu pantau status verifikasinya kapan saja lewat halaman Riwayat Laporan. Butuh datanya untuk keperluan lain? Ajukan lewat <a href="{{ route('permintaan.create') }}" style="color:var(--primary,#005F73);font-weight:600;text-decoration:underline;">Permintaan Data</a>.</p>
         </div>
     </div>
 
@@ -338,33 +378,44 @@
         <h2 class="sec-title" style="margin-bottom:.4rem;">Lembaga Konservasi Terkait</h2>
         <p class="sec-sub" style="margin:0 auto;">Untuk pelaporan darurat, informasi lebih lanjut, atau kerjasama program konservasi.</p>
     </div>
-    <div class="kontak-grid">
-        <div class="kontak-card">
-            <div class="kontak-icon"><i class="fa-solid fa-building-columns"></i></div>
-            <div>
-                <h4>BPSPL Padang (Wil. Kepri)</h4>
-                <p>Balai Pengelolaan Sumber Daya Pesisir dan Laut, Kementerian Kelautan dan Perikanan</p>
-                <a href="mailto:bpspl.padang@kkp.go.id">
+    <div class="kontak-panel">
+        <div class="kontak-grid">
+            <div class="kontak-card" style="--kontak-accent:#005F73;">
+                <div class="kontak-card-head">
+                    <div class="kontak-icon"><i class="fa-solid fa-building-columns"></i></div>
+                    <div>
+                        <span class="kontak-tag">Instansi Pemerintah</span>
+                        <h4>BPSPL Padang (Wil. Kepri)</h4>
+                    </div>
+                </div>
+                <p>Balai Pengelolaan Sumber Daya Pesisir dan Laut, Kementerian Kelautan dan Perikanan.</p>
+                <a href="mailto:bpspl.padang@kkp.go.id" class="kontak-link">
                     <i class="fa-solid fa-envelope"></i> bpspl.padang@kkp.go.id
                 </a>
             </div>
-        </div>
-        <div class="kontak-card">
-            <div class="kontak-icon"><i class="fa-solid fa-leaf"></i></div>
-            <div>
-                <h4>WWF Indonesia</h4>
-                <p>World Wide Fund for Nature — Program Kelautan dan Pesisir Indonesia</p>
-                <a href="mailto:info@wwf.id">
+            <div class="kontak-card" style="--kontak-accent:#1D9E75;">
+                <div class="kontak-card-head">
+                    <div class="kontak-icon"><i class="fa-solid fa-leaf"></i></div>
+                    <div>
+                        <span class="kontak-tag">Organisasi Non-Profit</span>
+                        <h4>WWF Indonesia</h4>
+                    </div>
+                </div>
+                <p>World Wide Fund for Nature, Program Kelautan dan Pesisir Indonesia.</p>
+                <a href="mailto:info@wwf.id" class="kontak-link">
                     <i class="fa-solid fa-envelope"></i> info@wwf.id
                 </a>
             </div>
-        </div>
-        <div class="kontak-card">
-            <div class="kontak-icon"><i class="fa-solid fa-fish"></i></div>
-            <div>
-                <h4>SiKoDung — Laporan Online</h4>
-                <p>Laporkan penampakan dugong atau kondisi habitat langsung melalui sistem ini</p>
-                <a href="{{ route('laporan.create') }}">
+            <div class="kontak-card kontak-cta" style="--kontak-accent:#005F73;">
+                <div class="kontak-card-head">
+                    <div class="kontak-icon"><i class="fa-solid fa-fish"></i></div>
+                    <div>
+                        <span class="kontak-tag">Layanan Kami</span>
+                        <h4>Simadang, Laporan Online</h4>
+                    </div>
+                </div>
+                <p>Laporkan penampakan dugong atau kondisi habitat langsung melalui sistem ini.</p>
+                <a href="{{ route('laporan.create') }}" class="kontak-link">
                     <i class="fa-solid fa-arrow-right"></i> Buat Laporan Sekarang
                 </a>
             </div>

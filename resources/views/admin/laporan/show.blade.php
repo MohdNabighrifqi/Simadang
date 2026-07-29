@@ -1,6 +1,6 @@
 {{-- resources/views/admin/laporan/show.blade.php --}}
 @extends('layouts.admin')
-@section('title', 'Detail Laporan — Admin')
+@section('title', 'Detail Laporan - Admin')
 
 @push('styles')
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
@@ -81,7 +81,7 @@
                 <div style="display:flex;align-items:center;gap:12px;padding:1rem 1.1rem;background:var(--amber-light,#FEF3E2);border:1px solid rgba(202,103,2,.2);border-radius:8px;color:#7A3D00;">
                     <i class="fa-solid fa-triangle-exclamation" style="font-size:1.3rem;flex-shrink:0;"></i>
                     <div style="font-size:.85rem;">
-                        <strong>Tidak ada foto/video bukti.</strong> Laporan ini tidak bisa diverifikasi secara visual — pertimbangkan untuk menghubungi pelapor atau menolak jika deskripsi juga kurang meyakinkan.
+                        <strong>Tidak ada foto/video bukti.</strong> Laporan ini tidak bisa diverifikasi secara visual, pertimbangkan untuk menghubungi pelapor atau menolak jika deskripsi juga kurang meyakinkan.
                     </div>
                 </div>
                 @endif
@@ -98,12 +98,12 @@
                     <div class="info-row">
                         <div class="info-label">Waktu</div>
                         <div class="info-val">
-                            {{ $laporan->waktu ? \Carbon\Carbon::parse($laporan->waktu)->format('H:i').' WIB' : '—' }}
+                            {{ $laporan->waktu ? \Carbon\Carbon::parse($laporan->waktu)->format('H:i').' WIB' : '-' }}
                         </div>
                     </div>
                     <div class="info-row">
                         <div class="info-label">Jenis Laporan</div>
-                        <div class="info-val">{{ ucfirst($laporan->jenis?->nama ?? '—') }}</div>
+                        <div class="info-val">{{ ucfirst($laporan->jenis?->nama ?? '-') }}</div>
                     </div>
                     <div class="info-row">
                         <div class="info-label">Kondisi Dugong</div>
@@ -112,17 +112,17 @@
                             @if($k==='hidup') <span style="color:#2196F3;"><i class="fa-solid fa-fish"></i> Hidup</span>
                             @elseif($k==='mati_terdampar') <span style="color:#424242;"><i class="fa-solid fa-triangle-exclamation"></i> Mati Terdampar</span>
                             @elseif($k==='mati_tertangkap') <span style="color:#E65100;"><i class="fa-solid fa-skull-crossbones"></i> Mati Tertangkap</span>
-                            @else <span style="color:var(--text-muted);">—</span>
+                            @else <span style="color:var(--text-muted);">-</span>
                             @endif
                         </div>
                     </div>
                     <div class="info-row">
                         <div class="info-label">Jumlah Dugong</div>
-                        <div class="info-val">{{ $laporan->jumlah_dugong ? $laporan->jumlah_dugong.' ekor' : '—' }}</div>
+                        <div class="info-val">{{ $laporan->jumlah_dugong ? $laporan->jumlah_dugong.' ekor' : '-' }}</div>
                     </div>
                     <div class="info-row">
                         <div class="info-label">Sumber Data</div>
-                        <div class="info-val">{{ $laporan->sumber_data ?? '—' }}</div>
+                        <div class="info-val">{{ $laporan->sumber_data ?? '-' }}</div>
                     </div>
                 </div>
 
@@ -141,26 +141,26 @@
                     <div class="info-grid-2" style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:0 1.5rem;">
                         <div class="info-row">
                             <div class="info-label">Nama Lokasi</div>
-                            <div class="info-val">{{ $laporan->lokasi?->nama ?? '—' }}</div>
+                            <div class="info-val">{{ $laporan->lokasi?->nama ?? '-' }}</div>
                         </div>
                         <div class="info-row">
                             <div class="info-label">Wilayah</div>
-                            <div class="info-val">{{ $laporan->lokasi?->wilayah ?? '—' }}</div>
+                            <div class="info-val">{{ $laporan->lokasi?->wilayah ?? '-' }}</div>
                         </div>
                         <div class="info-row">
                             <div class="info-label">Keterangan Lokasi</div>
-                            <div class="info-val" style="font-size:.78rem;">{{ $laporan->lokasi?->keterangan ?? '—' }}</div>
+                            <div class="info-val" style="font-size:.78rem;">{{ $laporan->lokasi?->keterangan ?? '-' }}</div>
                         </div>
                         <div class="info-row">
                             <div class="info-label">Latitude</div>
                             <div class="info-val" style="font-family:monospace;color:var(--primary,#005F73);">
-                                {{ $laporan->latitude ?? $laporan->lokasi?->latitude ?? '—' }}
+                                {{ $laporan->latitude ?? $laporan->lokasi?->latitude ?? '-' }}
                             </div>
                         </div>
                         <div class="info-row">
                             <div class="info-label">Longitude</div>
                             <div class="info-val" style="font-family:monospace;color:var(--primary,#005F73);">
-                                {{ $laporan->longitude ?? $laporan->lokasi?->longitude ?? '—' }}
+                                {{ $laporan->longitude ?? $laporan->lokasi?->longitude ?? '-' }}
                             </div>
                         </div>
                         <div class="info-row">
@@ -206,7 +206,7 @@
                 <div class="card-title" style="margin-bottom:.8rem;"><i class="fa-solid fa-user"></i> Pelapor</div>
                 <div class="info-row">
                     <div class="info-label">Nama</div>
-                    <div class="info-val">{{ $laporan->nama_pelapor ?? $laporan->user?->name ?? '—' }}</div>
+                    <div class="info-val">{{ $laporan->nama_pelapor ?? $laporan->user?->name ?? '-' }}</div>
                 </div>
                 @if($laporan->no_hp)
                 <div class="info-row">
@@ -235,7 +235,7 @@
                 </div>
                 <div class="info-row">
                     <div class="info-label">Asal Daerah</div>
-                    <div class="info-val">{{ $laporan->user->daerah ?? '—' }}</div>
+                    <div class="info-val">{{ $laporan->user->daerah ?? '-' }}</div>
                 </div>
                 @endif
             </div>

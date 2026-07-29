@@ -19,8 +19,8 @@ Artisan::command('mail:test {email}', function (string $email) {
     $this->info('from     : ' . config('mail.from.address'));
 
     try {
-        Mail::raw('Test email dari SiKoDung production.', function ($msg) use ($email) {
-            $msg->to($email)->subject('Test Mail SiKoDung');
+        Mail::raw('Test email dari Simadang production.', function ($msg) use ($email) {
+            $msg->to($email)->subject('Test Mail Simadang');
         });
         $this->info('BERHASIL: tidak ada exception, cek inbox/spam tujuan.');
     } catch (\Throwable $e) {

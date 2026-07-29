@@ -25,7 +25,7 @@
 ]])
 
     <div class="card">
-        <div class="card-title" style="margin-bottom:1.2rem;">Edit Laporan — {{ $laporan->kode }}</div>
+        <div class="card-title" style="margin-bottom:1.2rem;">Edit Laporan - {{ $laporan->kode }}</div>
 
         <form method="POST" action="{{ route('admin.laporan.update', $laporan->id) }}">
             @csrf @method('PUT')
@@ -47,7 +47,7 @@
                 <div class="form-group">
                     <label class="form-label">Kondisi</label>
                     <select name="kondisi_id" class="form-control @error('kondisi_id') is-invalid @enderror">
-                        <option value="">— Tidak ada kondisi (Habitat) —</option>
+                        <option value="">- Tidak ada kondisi (Habitat) -</option>
                         @foreach($kondisiList as $k)
                         <option value="{{ $k->id }}" {{ old('kondisi_id',$laporan->kondisi_id)==$k->id?'selected':'' }}>
                             {{ ucfirst(str_replace('_',' ',$k->nama)) }}
@@ -60,14 +60,14 @@
                 <div class="form-group">
                     <label class="form-label">Lokasi</label>
                     <select name="lokasi_id" id="lokasi_id_select" class="form-control @error('lokasi_id') is-invalid @enderror">
-                        <option value="">— Pilih Lokasi —</option>
+                        <option value="">- Pilih Lokasi -</option>
                         @foreach($lokasiList as $l)
                         <option value="{{ $l->id }}" {{ old('lokasi_id',$laporan->lokasi_id)==$l->id?'selected':'' }}>
                             {{ $l->nama }}
                         </option>
                         @endforeach
                     </select>
-                    <div style="font-size:.72rem;color:var(--text-muted);margin-top:3px;">Otomatis menyesuaikan lokasi terdekat saat titik koordinat diubah — tetap bisa dipilih manual.</div>
+                    <div style="font-size:.72rem;color:var(--text-muted);margin-top:3px;">Otomatis menyesuaikan lokasi terdekat saat titik koordinat diubah, tetap bisa dipilih manual.</div>
                     @error('lokasi_id')<span class="form-error">{{ $message }}</span>@enderror
                 </div>
 
@@ -115,7 +115,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="form-label">Nama Pelapor <span style="font-weight:400;color:var(--text-muted);">(opsional — kosong untuk data historis)</span></label>
+                    <label class="form-label">Nama Pelapor <span style="font-weight:400;color:var(--text-muted);">(opsional, kosong untuk data historis)</span></label>
                     <input type="text" name="nama_pelapor"
                            class="form-control @error('nama_pelapor') is-invalid @enderror"
                            value="{{ old('nama_pelapor',$laporan->nama_pelapor) }}">
@@ -123,7 +123,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="form-label">No. HP <span style="font-weight:400;color:var(--text-muted);">(opsional — kosong untuk data historis)</span></label>
+                    <label class="form-label">No. HP <span style="font-weight:400;color:var(--text-muted);">(opsional, kosong untuk data historis)</span></label>
                     <input type="text" name="no_hp"
                            class="form-control @error('no_hp') is-invalid @enderror"
                            value="{{ old('no_hp',$laporan->no_hp) }}" placeholder="cth: 0812xxxxxxx">
@@ -157,7 +157,7 @@
                 <div class="form-group col-2">
                     <label class="form-label">
                         Titik Koordinat GPS
-                        <span style="font-weight:400;color:var(--text-muted);">— klik peta untuk ubah posisi marker</span>
+                        <span style="font-weight:400;color:var(--text-muted);">(klik peta untuk ubah posisi marker)</span>
                     </label>
                     <input type="hidden" name="latitude"  id="lat_input" value="{{ old('latitude',$laporan->latitude) }}">
                     <input type="hidden" name="longitude" id="lng_input" value="{{ old('longitude',$laporan->longitude) }}">
@@ -175,11 +175,11 @@
                             </button>
                             <div class="coord-chip">
                                 <label>Lat</label>
-                                <span class="val" id="lat-disp">{{ $laporan->latitude ?? '—' }}</span>
+                                <span class="val" id="lat-disp">{{ $laporan->latitude ?? '-' }}</span>
                             </div>
                             <div class="coord-chip">
                                 <label>Lng</label>
-                                <span class="val" id="lng-disp">{{ $laporan->longitude ?? '—' }}</span>
+                                <span class="val" id="lng-disp">{{ $laporan->longitude ?? '-' }}</span>
                             </div>
                             <button type="button" class="btn btn-gray btn-sm" onclick="resetKoord()" id="btn-reset">
                                 Hapus Koordinat
@@ -293,8 +293,8 @@ function gunakanLokasiSayaEdit(){
 function resetKoord(){
     document.getElementById('lat_input').value = '';
     document.getElementById('lng_input').value = '';
-    document.getElementById('lat-disp').textContent = '—';
-    document.getElementById('lng-disp').textContent = '—';
+    document.getElementById('lat-disp').textContent = '-';
+    document.getElementById('lng-disp').textContent = '-';
     if(marker){ map.removeLayer(marker); marker = null; }
 }
 

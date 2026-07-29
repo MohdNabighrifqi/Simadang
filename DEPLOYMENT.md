@@ -1,4 +1,4 @@
-# Panduan Deploy SiKoDung (Gratis)
+# Panduan Deploy Simadang (Gratis)
 
 Kode sudah disiapkan (git repo lokal sudah dibuat). Langkah selanjutnya butuh kamu membuat akun di beberapa layanan — bagian ini tidak bisa dibantu langsung oleh Claude (pembuatan akun harus dilakukan pemilik).
 
@@ -42,7 +42,7 @@ Setelah dibuat, catat: **host**, **port**, **nama database**, **username**, **pa
 Masuk ke tab **Environment** di dashboard Render, isi persis seperti ini (nilai yang ada `<...>` diganti data kamu):
 
 ```
-APP_NAME=SiKoDung
+APP_NAME=Simadang
 APP_ENV=production
 APP_KEY=<generate dengan: php artisan key:generate --show>
 APP_DEBUG=false

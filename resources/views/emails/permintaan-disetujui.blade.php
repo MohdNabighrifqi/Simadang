@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Data Dugong Bintan — SiKoDung</title>
+    <title>Data Dugong Bintan - Simadang</title>
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif; background: #F3F4F6; color: #111827; }
@@ -37,7 +37,7 @@
 
         {{-- Header --}}
         <div class="header">
-            <h1>SiKoDung</h1>
+            <h1>Simadang</h1>
             <p>Sistem Informasi Konservasi Dugong Bintan</p>
         </div>
 
@@ -45,7 +45,7 @@
         <div class="body">
             <div class="greeting">Yth. {{ $permintaan->nama_pemohon }},</div>
             <p class="text">
-                Permintaan data dugong Anda telah <strong>disetujui</strong> oleh administrator SiKoDung.
+                Permintaan data dugong Anda telah <strong>disetujui</strong> oleh administrator Simadang.
                 Data yang Anda minta telah kami lampirkan dalam email ini dalam format
                 <strong>{{ $permintaan->format_file === 'pdf' ? 'PDF' : 'Excel (.xlsx)' }}</strong>.
             </p>
@@ -63,7 +63,7 @@
                 @if($permintaan->periode_dari || $permintaan->periode_sampai)
                 <div class="info-row">
                     <span class="info-label">Periode</span>
-                    <span class="info-val">{{ $permintaan->periode_dari ?? '—' }} s/d {{ $permintaan->periode_sampai ?? 'sekarang' }}</span>
+                    <span class="info-val">{{ $permintaan->periode_dari ?? '-' }} s/d {{ $permintaan->periode_sampai ?? 'sekarang' }}</span>
                 </div>
                 @endif
                 <div class="info-row">
@@ -90,9 +90,9 @@
                     <h4>{{ $namaFile }}</h4>
                     <p>
                         @if($permintaan->format_file === 'pdf')
-                            Terlampir di email ini — buka dengan aplikasi pembaca PDF
+                            Terlampir di email ini, buka dengan aplikasi pembaca PDF
                         @else
-                            Terlampir di email ini — buka dengan Excel atau Google Sheets
+                            Terlampir di email ini, buka dengan Excel atau Google Sheets
                         @endif
                     </p>
                 </div>
@@ -107,23 +107,23 @@
             <div class="note">
                 <strong>Ketentuan Penggunaan Data:</strong><br>
                 Data ini diberikan untuk keperluan <em>{{ $permintaan->tujuan }}</em>. Mohon cantumkan sumber data sebagai
-                <em>"SiKoDung — Sistem Informasi Konservasi Dugong Bintan, {{ date('Y') }}"</em> apabila digunakan dalam
-                publikasi, laporan, atau karya ilmiah. Data tidak boleh disebarluaskan tanpa izin dari administrator SiKoDung.
+                <em>"Simadang, Sistem Informasi Konservasi Dugong Bintan, {{ date('Y') }}"</em> apabila digunakan dalam
+                publikasi, laporan, atau karya ilmiah. Data tidak boleh disebarluaskan tanpa izin dari administrator Simadang.
             </div>
 
             <p class="text">
-                Jika ada pertanyaan atau membutuhkan format data lain, silakan hubungi administrator melalui sistem SiKoDung.
+                Jika ada pertanyaan atau membutuhkan format data lain, silakan hubungi administrator melalui sistem Simadang.
             </p>
             <p class="text">Terima kasih atas partisipasi Anda dalam konservasi dugong di Kepulauan Riau.</p>
             <p class="text" style="margin-top:20px;">
                 Salam,<br>
-                <strong>Tim SiKoDung</strong><br>
+                <strong>Tim Simadang</strong><br>
                 <span style="color:#6B7280;font-size:13px;">Sistem Informasi Konservasi Dugong Bintan</span>
             </p>
         </div>
 
         <div class="footer">
-            <p>Email ini dikirim otomatis oleh sistem <a href="#">SiKoDung</a>.</p>
+            <p>Email ini dikirim otomatis oleh sistem <a href="#">Simadang</a>.</p>
             <p style="margin-top:4px;">Jangan membalas email ini secara langsung.</p>
         </div>
     </div>

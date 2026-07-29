@@ -11,7 +11,7 @@
 
     <div class="page-header">
         <h2>Permintaan Data Dugong</h2>
-        <p>Isi formulir berikut untuk meminta data pengamatan dugong dari sistem SiKoDung. Admin akan meninjau permintaan Anda dalam 1–3 hari kerja.</p>
+        <p>Isi formulir berikut untuk meminta data pengamatan dugong dari sistem Simadang. Admin akan meninjau permintaan Anda dalam 1–3 hari kerja.</p>
     </div>
 
     <div class="detail-grid permintaan-layout" style="--sidebar-w:320px;">
@@ -58,7 +58,7 @@
                     <div class="form-group">
                         <label class="form-label">Jenis Data yang Diminta <span class="required">*</span></label>
                         <select name="jenis_data" class="form-control @error('jenis_data') is-invalid @enderror">
-                            <option value="">— Pilih Jenis Data —</option>
+                            <option value="">- Pilih Jenis Data -</option>
                             <option value="laporan"   {{ old('jenis_data')==='laporan'   ?'selected':'' }}>Data Laporan Dugong</option>
                             <option value="statistik" {{ old('jenis_data')==='statistik' ?'selected':'' }}>Data Statistik Konservasi</option>
                             <option value="lengkap"   {{ old('jenis_data')==='lengkap'   ?'selected':'' }}>Data Lengkap</option>
@@ -69,8 +69,8 @@
                     <div class="form-group">
                         <label class="form-label">Format File <span class="required">*</span></label>
                         <select name="format_file" class="form-control @error('format_file') is-invalid @enderror">
-                            <option value="xlsx" {{ old('format_file','xlsx')==='xlsx' ?'selected':'' }}>Excel (.xlsx) — untuk analisis data</option>
-                            <option value="pdf"  {{ old('format_file')==='pdf'         ?'selected':'' }}>PDF (.pdf) — untuk dokumentasi/pelaporan</option>
+                            <option value="xlsx" {{ old('format_file','xlsx')==='xlsx' ?'selected':'' }}>Excel (.xlsx), untuk analisis data</option>
+                            <option value="pdf"  {{ old('format_file')==='pdf'         ?'selected':'' }}>PDF (.pdf), untuk dokumentasi/pelaporan</option>
                         </select>
                         @error('format_file')<span class="form-error">{{ $message }}</span>@enderror
                     </div>
@@ -80,7 +80,7 @@
                         <div style="display:flex;gap:8px;align-items:center;">
                             <input type="number" name="periode_dari" min="2000" max="{{ date('Y') }}"
                                    class="form-control" value="{{ old('periode_dari') }}" placeholder="Dari tahun">
-                            <span style="color:var(--text-muted);">—</span>
+                            <span style="color:var(--text-muted);">-</span>
                             <input type="number" name="periode_sampai" min="2000" max="{{ date('Y') }}"
                                    class="form-control" value="{{ old('periode_sampai') }}" placeholder="Sampai tahun">
                         </div>
@@ -137,8 +137,8 @@
                 </div>
                 <div style="margin-top:1rem;padding-top:.85rem;border-top:1px solid var(--border);font-size:.78rem;color:var(--text-muted);line-height:1.7;">
                     <strong style="color:var(--text);">Format tersedia:</strong><br>
-                    Excel (.xlsx) — untuk kebutuhan analisis data.<br>
-                    PDF (.pdf) — untuk kebutuhan dokumentasi atau pelaporan.
+                    Excel (.xlsx), untuk kebutuhan analisis data.<br>
+                    PDF (.pdf), untuk kebutuhan dokumentasi atau pelaporan.
                 </div>
             </div>
             <div class="card" style="background:var(--primary-light);border-color:rgba(0,95,115,.15);">

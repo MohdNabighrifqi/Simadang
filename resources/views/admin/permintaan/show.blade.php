@@ -29,7 +29,7 @@
 
                 <div class="info-row">
                     <div class="info-label">Institusi</div>
-                    <div class="info-val">{{ $permintaan->institusi ?? '—' }}</div>
+                    <div class="info-val">{{ $permintaan->institusi ?? '-' }}</div>
                 </div>
 
                 <div class="info-row">
@@ -48,7 +48,7 @@
                 <div class="info-row">
                     <div class="info-label">Periode Data</div>
                     <div class="info-val">
-                        {{ $permintaan->periode_dari ?? '—' }} s/d {{ $permintaan->periode_sampai ?? 'sekarang' }}
+                        {{ $permintaan->periode_dari ?? '-' }} s/d {{ $permintaan->periode_sampai ?? 'sekarang' }}
                     </div>
                 </div>
                 @endif

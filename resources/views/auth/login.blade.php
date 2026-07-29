@@ -6,7 +6,7 @@
 <div class="container-sm">
     <div class="card auth-card">
         <div class="auth-icon">🐬</div>
-        <h2 class="auth-title">Masuk ke SiKoDung</h2>
+        <h2 class="auth-title">Masuk ke Simadang</h2>
         <p class="auth-sub">Masuk untuk melaporkan dan mengelola data konservasi</p>
 
         <form method="POST" action="{{ route('login') }}">

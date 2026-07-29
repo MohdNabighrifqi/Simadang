@@ -65,7 +65,7 @@
 
     <div class="page-header">
         <h2>Buat Laporan Baru</h2>
-        <p>Cukup 1 formulir singkat — pilih kondisi, tandai lokasi di peta, dan kirim.</p>
+        <p>Cukup 1 formulir singkat, pilih kondisi, tandai lokasi di peta, dan kirim.</p>
     </div>
 
     <div class="card">
@@ -148,7 +148,7 @@
                 <div class="form-group col-2">
                     <label class="form-label">
                         <i class="fa-solid fa-map-pin"></i> Titik Koordinat
-                        <span style="font-weight:400;color:var(--text-muted);">(opsional — klik peta untuk menandai)</span>
+                        <span style="font-weight:400;color:var(--text-muted);">(opsional, klik peta untuk menandai)</span>
                     </label>
                     <div class="map-picker-wrap" style="margin-top:8px;">
                         <div class="map-picker-header">
@@ -162,14 +162,14 @@
                                     onclick="gunakanLokasiSaya()">
                                 <i class="fa-solid fa-location-crosshairs"></i> Gunakan Lokasi Saya
                             </button>
-                            <span class="coord-placeholder" id="coord-placeholder">Belum ada titik — klik pada peta atau pakai GPS</span>
+                            <span class="coord-placeholder" id="coord-placeholder">Belum ada titik, klik pada peta atau pakai GPS</span>
                             <div class="coord-chip" id="chip-lat" style="display:none;">
                                 <label>Lat</label>
-                                <span class="val" id="lat-display">—</span>
+                                <span class="val" id="lat-display">-</span>
                             </div>
                             <div class="coord-chip" id="chip-lng" style="display:none;">
                                 <label>Lng</label>
-                                <span class="val" id="lng-display">—</span>
+                                <span class="val" id="lng-display">-</span>
                             </div>
                             <button type="button" class="btn-reset-coord" id="btn-reset-coord"
                                     disabled onclick="resetKoordinat()">
@@ -319,7 +319,7 @@ function cekJarakTitik(lat, lng) {
     if (!koord) { warningBox.classList.remove('show'); return; }
     const jarak = jarakKm(lat, lng, koord[0], koord[1]);
     if (jarak > 15) {
-        warningTeks.textContent = `Titik yang Anda tandai berjarak sekitar ${jarak.toFixed(1)} km dari wilayah "${namaLokasi}" yang dipilih. Pastikan titiknya sudah benar sebelum mengirim — laporan tidak bisa diedit lagi setelah dikirim.`;
+        warningTeks.textContent = `Titik yang Anda tandai berjarak sekitar ${jarak.toFixed(1)} km dari wilayah "${namaLokasi}" yang dipilih. Pastikan titiknya sudah benar sebelum mengirim, laporan tidak bisa diedit lagi setelah dikirim.`;
         warningBox.classList.add('show');
     } else {
         warningBox.classList.remove('show');

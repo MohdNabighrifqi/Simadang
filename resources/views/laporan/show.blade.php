@@ -51,12 +51,12 @@
                     <div class="info-row">
                         <div class="info-label">Waktu</div>
                         <div class="info-val">
-                            {{ $laporan->waktu ? \Carbon\Carbon::parse($laporan->waktu)->format('H:i').' WIB' : '—' }}
+                            {{ $laporan->waktu ? \Carbon\Carbon::parse($laporan->waktu)->format('H:i').' WIB' : '-' }}
                         </div>
                     </div>
                     <div class="info-row">
                         <div class="info-label">Jenis Laporan</div>
-                        <div class="info-val">{{ ucfirst($laporan->jenis?->nama ?? '—') }}</div>
+                        <div class="info-val">{{ ucfirst($laporan->jenis?->nama ?? '-') }}</div>
                     </div>
                     <div class="info-row">
                         <div class="info-label">Kondisi Dugong</div>
@@ -65,17 +65,17 @@
                             @if($k==='hidup') <span style="color:#0A9396;font-weight:600;">Hidup</span>
                             @elseif($k==='mati_terdampar') <span style="color:#374151;font-weight:600;">Mati Terdampar</span>
                             @elseif($k==='mati_tertangkap') <span style="color:#AE2012;font-weight:600;">Mati Tertangkap</span>
-                            @else <span style="color:var(--text-muted);">—</span>
+                            @else <span style="color:var(--text-muted);">-</span>
                             @endif
                         </div>
                     </div>
                     <div class="info-row">
                         <div class="info-label">Jumlah Dugong</div>
-                        <div class="info-val">{{ $laporan->jumlah_dugong ? $laporan->jumlah_dugong.' ekor' : '—' }}</div>
+                        <div class="info-val">{{ $laporan->jumlah_dugong ? $laporan->jumlah_dugong.' ekor' : '-' }}</div>
                     </div>
                     <div class="info-row">
                         <div class="info-label">Lokasi</div>
-                        <div class="info-val">{{ $laporan->lokasi?->nama ?? '—' }}</div>
+                        <div class="info-val">{{ $laporan->lokasi?->nama ?? '-' }}</div>
                     </div>
                     @if($laporan->sumber_data)
                     <div class="info-row info-row-full">
@@ -102,11 +102,11 @@
                     <div class="detail-grid-cols3">
                         <div class="info-row">
                             <div class="info-label">Nama Lokasi</div>
-                            <div class="info-val">{{ $laporan->lokasi?->nama ?? '—' }}</div>
+                            <div class="info-val">{{ $laporan->lokasi?->nama ?? '-' }}</div>
                         </div>
                         <div class="info-row">
                             <div class="info-label">Wilayah</div>
-                            <div class="info-val">{{ $laporan->lokasi?->wilayah ?? '—' }}</div>
+                            <div class="info-val">{{ $laporan->lokasi?->wilayah ?? '-' }}</div>
                         </div>
                         <div class="info-row">
                             <div class="info-label">Koordinat GPS</div>
@@ -114,7 +114,7 @@
                                 @if($lat && $lng)
                                     {{ number_format($lat,6) }}, {{ number_format($lng,6) }}
                                 @else
-                                    —
+                                    -
                                 @endif
                             </div>
                         </div>
@@ -166,7 +166,7 @@
                 <div class="card-title" style="font-size:.875rem;">Pelapor</div>
                 <div class="info-row">
                     <div class="info-label">Nama</div>
-                    <div class="info-val">{{ $laporan->nama_pelapor ?? $laporan->user?->name ?? '—' }}</div>
+                    <div class="info-val">{{ $laporan->nama_pelapor ?? $laporan->user?->name ?? '-' }}</div>
                 </div>
                 @if($laporan->no_hp)
                 <div class="info-row">

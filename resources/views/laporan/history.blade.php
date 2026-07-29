@@ -14,7 +14,7 @@
     <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:1rem;margin-bottom:1.5rem;">
         <div class="page-header" style="margin:0;">
             <h2>Riwayat Laporan Saya</h2>
-            <p>Semua laporan yang pernah Anda kirimkan melalui SiKoDung.</p>
+            <p>Semua laporan yang pernah Anda kirimkan melalui Simadang.</p>
         </div>
         <a href="{{ route('laporan.create') }}" class="btn btn-teal">
             <i class="fa-solid fa-plus"></i> Buat Laporan Baru
@@ -85,7 +85,7 @@
                                 <i class="fa-solid fa-leaf" style="color:var(--amber,#CA6702)"></i> Habitat
                             @endif
                         </td>
-                        <td>{{ $lap->lokasi?->nama ?? '—' }}</td>
+                        <td>{{ $lap->lokasi?->nama ?? '-' }}</td>
                         <td>@include('partials.badge-status', ['status' => $lap->status])</td>
                         <td style="max-width:180px;">
                             @if($lap->catatan)
@@ -93,7 +93,7 @@
                                     {{ Str::limit($lap->catatan, 50) }}
                                 </span>
                             @else
-                                <span style="color:var(--border-md);font-size:.78rem;">—</span>
+                                <span style="color:var(--border-md);font-size:.78rem;">-</span>
                             @endif
                         </td>
                         <td>

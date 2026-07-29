@@ -30,7 +30,7 @@ class PermintaanDataDisetujui extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: '[SiKoDung] Data Dugong Bintan — Permintaan #' . $this->permintaan->id . ' Disetujui',
+            subject: '[Simadang] Data Dugong Bintan - Permintaan #' . $this->permintaan->id . ' Disetujui',
         );
     }
 

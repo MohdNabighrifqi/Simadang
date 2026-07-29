@@ -72,7 +72,7 @@
             <div class="card-title" style="padding:1.25rem 1.25rem 0;">
                 <i class="fa-solid fa-map-location-dot"></i> Wilayah Prioritas Konservasi
             </div>
-            <p class="chart-desc" style="padding:0 1.25rem;">Wilayah dengan jumlah laporan terverifikasi terbanyak — semakin besar &amp; gelap titik, semakin tinggi prioritas konservasi.</p>
+            <p class="chart-desc" style="padding:0 1.25rem;">Wilayah dengan jumlah laporan terverifikasi terbanyak, semakin besar &amp; gelap titik, semakin tinggi prioritas konservasi.</p>
             <div id="peta-wilayah"></div>
         </div>
 

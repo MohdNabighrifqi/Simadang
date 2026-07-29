@@ -12,7 +12,7 @@
     <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:1rem;margin-bottom:1.2rem;">
         <div class="page-header" style="margin:0;">
             <h2>Kelola Pengguna</h2>
-            <p>Daftar semua pengguna terdaftar di sistem SiKoDung.</p>
+            <p>Daftar semua pengguna terdaftar di sistem Simadang.</p>
         </div>
         <a href="{{ route('admin.users.create') }}" class="btn btn-teal">
             <i class="fa-solid fa-plus"></i> Tambah Pengguna
@@ -20,20 +20,18 @@
     </div>
 
     {{-- Filter --}}
-    <form method="GET" action="{{ route('admin.users.index') }}"
-          style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:1.2rem;">
-        <input type="text" name="cari" placeholder="Cari nama / email..."
-               class="form-control" style="width:220px;"
-               value="{{ request('cari') }}">
-        <button type="submit" class="btn btn-gray btn-sm" style="padding:9px 12px;" title="Cari">
+    <form method="GET" action="{{ route('admin.users.index') }}" class="filter-bar">
+        <div class="filter-search">
             <i class="fa-solid fa-magnifying-glass"></i>
-        </button>
-        <select name="role" class="form-control" style="width:auto;" onchange="this.form.submit()">
+            <input type="text" name="cari" placeholder="Cari nama / email..."
+                   class="form-control" value="{{ request('cari') }}" onchange="this.form.submit()">
+        </div>
+        <select name="role" class="form-control" onchange="this.form.submit()">
             <option value="">Semua Role</option>
             <option value="admin" {{ request('role')==='admin' ?'selected':'' }}>Admin</option>
             <option value="warga" {{ request('role')==='warga' ?'selected':'' }}>Warga</option>
         </select>
-        <a href="{{ route('admin.users.index') }}" class="btn btn-gray btn-sm" style="padding:9px 16px;">
+        <a href="{{ route('admin.users.index') }}" class="filter-reset">
             <i class="fa-solid fa-rotate-left"></i> Reset
         </a>
     </form>
@@ -54,7 +52,7 @@
                 @endif
             </div>
             <div style="font-size:.75rem;color:var(--text-muted);margin-top:5px;">
-                {{ $user->daerah ?? '—' }} · {{ \Carbon\Carbon::parse($user->created_at)->translatedFormat('d M Y') }}
+                {{ $user->daerah ?? '-' }} · {{ \Carbon\Carbon::parse($user->created_at)->translatedFormat('d M Y') }}
             </div>
             <div style="display:flex;gap:6px;margin-top:10px;">
                 <a href="{{ route('admin.users.edit', $user->id) }}"
@@ -96,7 +94,7 @@
                         <td>{{ $loop->iteration + ($users->currentPage()-1) * $users->perPage() }}</td>
                         <td style="font-weight:500;">{{ $user->name }}</td>
                         <td style="color:var(--text-muted);font-size:.85rem;">{{ $user->email }}</td>
-                        <td>{{ $user->daerah ?? '—' }}</td>
+                        <td>{{ $user->daerah ?? '-' }}</td>
                         <td>
                             @if($user->role === 'admin')
                                 <span class="badge badge-info"><i class="fa-solid fa-shield"></i> Admin</span>
