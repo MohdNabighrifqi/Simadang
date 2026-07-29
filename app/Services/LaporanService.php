@@ -10,6 +10,7 @@ use App\Models\Laporan;
 use App\Models\Lokasi;
 use App\Models\User;
 use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -65,9 +66,20 @@ class LaporanService
 
     private function notifikasiAdminLaporanBaru(Laporan $laporan): void
     {
+        // Laporan sudah tersimpan di DB sebelum ini dipanggil — kegagalan kirim
+        // email (mis. SMTP diblokir/timeout di hosting) tidak boleh menggagalkan
+        // pengiriman laporan itu sendiri, jadi errornya ditangkap & dicatat saja.
         $adminEmails = User::where('role', 'admin')->pluck('email');
         foreach ($adminEmails as $email) {
-            Mail::to($email)->send(new LaporanBaruMasuk($laporan));
+            try {
+                Mail::to($email)->send(new LaporanBaruMasuk($laporan));
+            } catch (\Throwable $e) {
+                Log::error('Gagal mengirim notifikasi laporan baru ke admin', [
+                    'laporan_kode' => $laporan->kode,
+                    'email'        => $email,
+                    'error'        => $e->getMessage(),
+                ]);
+            }
         }
     }
 
