@@ -23,7 +23,8 @@ class StoreLaporanRequest extends FormRequest
             'nama_pelapor'   => ['required','string','min:3','max:100'],
             'no_hp'          => ['required','string','max:30'],
             'email'          => ['nullable','email','max:100'],
-            'foto'           => ['required','file','mimes:jpg,jpeg,png,webp,mp4,mov,webm','max:20480'],
+            'foto'           => ['required','array','min:1','max:5'],
+            'foto.*'         => ['file','mimes:jpg,jpeg,png,webp,mp4,mov,webm','max:20480'],
         ];
     }
 
@@ -40,8 +41,9 @@ class StoreLaporanRequest extends FormRequest
             'no_hp.required'          => 'Nomor HP wajib diisi agar tim admin dapat menghubungi Anda kembali.',
             'email.email'             => 'Format email tidak valid.',
             'foto.required'           => 'Foto atau video bukti wajib dilampirkan agar laporan dapat diverifikasi.',
-            'foto.mimes'              => 'File harus berupa foto (JPG/PNG/WEBP) atau video (MP4/MOV/WEBM).',
-            'foto.max'                => 'Ukuran file maksimal 20MB.',
+            'foto.max'                => 'Maksimal 5 file per laporan.',
+            'foto.*.mimes'            => 'File harus berupa foto (JPG/PNG/WEBP) atau video (MP4/MOV/WEBM).',
+            'foto.*.max'              => 'Ukuran tiap file maksimal 20MB.',
         ];
     }
 

@@ -123,7 +123,6 @@
             <a href="{{ route('login') }}" class="btn-nav-masuk">
                 <i class="fa-solid fa-right-to-bracket"></i> Login
             </a>
-
         @else
             <div class="profile-wrap">
                 <button type="button" class="avatar-btn" onclick="toggleDropdown()">

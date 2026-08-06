@@ -225,7 +225,7 @@
                 @endguest
                 @auth
                 @if(auth()->user()->role !== 'admin')
-                <a href="{{ route('laporan.create') }}" class="hero-btn-ghost">
+                <a href="{{ route('laporan.create') }}" class="hero-btn-primary">
                     <i class="fa-solid fa-plus"></i> Buat Laporan
                 </a>
                 @endif

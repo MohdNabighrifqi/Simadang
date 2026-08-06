@@ -9,7 +9,6 @@ use App\Models\Kondisi;
 use App\Models\Laporan;
 use App\Models\Lokasi;
 use App\Models\User;
-use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
@@ -17,7 +16,7 @@ use Illuminate\Support\Str;
 
 class LaporanService
 {
-    public function store(array $data, ?UploadedFile $foto = null): Laporan
+    public function store(array $data, ?array $fotos = null): Laporan
     {
         $jenis   = JenisLaporan::where('nama', $data['jenis'])->firstOrFail();
         $lokasi  = Lokasi::where('nama', $data['lokasi'])->first();
@@ -54,7 +53,8 @@ class LaporanService
             'status'        => 'menunggu',
         ]);
 
-        if ($foto) {
+        foreach ($fotos ?? [] as $foto) {
+            if (!$foto) continue;
             $path = $foto->store('laporan', 'public');
             FotoLaporan::create(['laporan_id' => $laporan->id, 'path' => $path]);
         }

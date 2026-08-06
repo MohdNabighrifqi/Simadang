@@ -44,12 +44,14 @@
 .dropzone-choose{display:inline-block;padding:7px 20px;background:#fff;border:1.5px solid #93c5fd;border-radius:8px;color:var(--blue,#185FA5);font-size:.875rem;font-weight:500;pointer-events:none;}
 .dropzone:hover .dropzone-choose{background:var(--blue,#185FA5);border-color:var(--blue,#185FA5);color:#fff;}
 .dropzone-hint{font-size:.72rem;color:var(--text-muted);margin-top:.5rem;}
-.preview-wrap{display:none;margin-top:10px;border-radius:10px;overflow:hidden;border:1px solid var(--border-md);}
-.preview-wrap.show{display:block;}
-.preview-img{width:100%;max-height:200px;object-fit:contain;display:block;background:#fff;}
-.preview-bar{display:flex;align-items:center;justify-content:space-between;padding:7px 12px;background:#fff;border-top:1px solid var(--border);font-size:.8rem;}
-.preview-remove{background:var(--coral-light);color:var(--coral);border:none;border-radius:6px;padding:4px 10px;font-size:.75rem;cursor:pointer;font-weight:600;transition:background .2s;}
-.preview-remove:hover{background:var(--coral);color:#fff;}
+.dropzone.is-full{opacity:.5;pointer-events:none;}
+.preview-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(100px,1fr));gap:10px;margin-top:10px;}
+.preview-thumb{position:relative;aspect-ratio:1;border-radius:10px;overflow:hidden;border:1px solid var(--border-md);background:#fff;}
+.preview-thumb img,.preview-thumb video{width:100%;height:100%;object-fit:cover;display:block;}
+.preview-thumb .thumb-remove{position:absolute;top:4px;right:4px;width:22px;height:22px;border-radius:50%;background:rgba(0,0,0,.55);color:#fff;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:.68rem;transition:background .15s;}
+.preview-thumb .thumb-remove:hover{background:var(--coral,#D85A30);}
+.preview-thumb .thumb-video-badge{position:absolute;bottom:4px;left:4px;background:rgba(0,0,0,.6);color:#fff;font-size:.6rem;padding:2px 6px;border-radius:4px;display:flex;align-items:center;gap:3px;}
+.preview-thumb .thumb-size{position:absolute;bottom:4px;right:4px;background:rgba(0,0,0,.55);color:#fff;font-size:.6rem;padding:2px 5px;border-radius:4px;}
 .required{color:var(--coral,#D85A30);margin-left:2px;}
 </style>
 @endpush
@@ -224,33 +226,25 @@
                 <div class="form-group col-2">
                     <label class="form-label">
                         Foto / Video Bukti <span class="required">*</span>
-                        <span style="font-weight:400;color:var(--text-muted);">(maks 20 MB)</span>
+                        <span style="font-weight:400;color:var(--text-muted);">(bisa lebih dari satu, maks 5 file · 20 MB/file)</span>
                     </label>
                     <div style="margin-top:6px;">
                         <div class="dropzone" id="dropzone">
-                            <input type="file" name="foto" id="fotoInput"
+                            <input type="file" name="foto[]" id="fotoInput" multiple
                                    accept="image/jpeg,image/png,image/webp,video/mp4,video/quicktime,video/webm"
                                    class="@error('foto') is-invalid @enderror">
                             <div class="dropzone-icon"><i class="fa-regular fa-image"></i></div>
                             <div class="dropzone-text"><strong>Drop foto atau video</strong> atau</div>
                             <div class="dropzone-choose">Pilih file</div>
-                            <div class="dropzone-hint">JPG, PNG, WEBP, MP4, MOV, WEBM · Maksimal 20 MB</div>
+                            <div class="dropzone-hint" id="dropzoneHint">Bisa pilih lebih dari satu · JPG, PNG, WEBP, MP4, MOV, WEBM · Maks 5 file, 20 MB/file</div>
                         </div>
-                        <div class="preview-wrap" id="previewWrap">
-                            <img src="" alt="Preview" class="preview-img" id="previewImg">
-                            <video class="preview-img" id="previewVideo" controls style="display:none;"></video>
-                            <div class="preview-bar">
-                                <div style="display:flex;align-items:center;gap:8px;min-width:0;">
-                                    <i class="fa-regular fa-image" style="color:var(--text-muted);" id="previewIcon"></i>
-                                    <span style="font-size:.8rem;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:180px;" id="previewName"></span>
-                                    <span style="font-size:.75rem;color:var(--text-muted);" id="previewSize"></span>
-                                </div>
-                                <button type="button" class="preview-remove" id="previewRemove">
-                                    <i class="fa-solid fa-xmark"></i> Hapus
-                                </button>
-                            </div>
+                        <div class="preview-grid" id="previewGrid"></div>
+                        <div class="field-warning" id="fotoWarning">
+                            <i class="fa-solid fa-triangle-exclamation"></i>
+                            <span>Total ukuran file cukup besar, unggahan mungkin lambat atau gagal di koneksi lambat. Pertimbangkan hapus salah satu file.</span>
                         </div>
                         @error('foto')<span class="form-error">{{ $message }}</span>@enderror
+                        @error('foto.*')<span class="form-error">{{ $message }}</span>@enderror
                     </div>
                 </div>
 
@@ -411,49 +405,76 @@ function gunakanLokasiSaya() {
     );
 }
 
-/* ══ UPLOAD FOTO / VIDEO ══ */
-const dropzone     = document.getElementById('dropzone');
-const fotoInput    = document.getElementById('fotoInput');
-const previewWrap  = document.getElementById('previewWrap');
-const previewImg   = document.getElementById('previewImg');
-const previewVideo = document.getElementById('previewVideo');
-const previewIcon  = document.getElementById('previewIcon');
+/* ══ UPLOAD FOTO / VIDEO (multi-file) ══ */
+const dropzone       = document.getElementById('dropzone');
+const fotoInput      = document.getElementById('fotoInput');
+const previewGrid    = document.getElementById('previewGrid');
+const fotoWarning    = document.getElementById('fotoWarning');
+const dropzoneHint   = document.getElementById('dropzoneHint');
+const MAX_FILES      = 5;
+const MAX_FILE_MB    = 20;
+const MAX_TOTAL_MB   = 35;
+let selectedFiles = [];
+
 function formatSize(b) { return b < 1048576 ? (b/1024).toFixed(1)+' KB' : (b/1048576).toFixed(1)+' MB'; }
-function showPreview(file) {
-    if (!file) return;
-    const isVideo = file.type.startsWith('video/');
-    const isImage = file.type.startsWith('image/');
-    if (!isVideo && !isImage) return;
-    const url = URL.createObjectURL(file);
-    if (isVideo) {
-        previewVideo.src = url;
-        previewVideo.style.display = '';
-        previewImg.style.display = 'none';
-        previewIcon.className = 'fa-solid fa-video';
-    } else {
-        previewImg.src = url;
-        previewImg.style.display = '';
-        previewVideo.style.display = 'none';
-        previewIcon.className = 'fa-regular fa-image';
+function totalSizeMB() { return selectedFiles.reduce((s,f) => s + f.size, 0) / 1048576; }
+
+function syncInput() {
+    const dt = new DataTransfer();
+    selectedFiles.forEach(f => dt.items.add(f));
+    fotoInput.files = dt.files;
+}
+
+function updateDropzoneState() {
+    const full = selectedFiles.length >= MAX_FILES;
+    dropzone.classList.toggle('is-full', full);
+    dropzoneHint.textContent = full
+        ? `Maksimal ${MAX_FILES} file tercapai`
+        : `Bisa pilih lebih dari satu · JPG, PNG, WEBP, MP4, MOV, WEBM · Maks ${MAX_FILES} file, ${MAX_FILE_MB} MB/file`;
+    fotoWarning.classList.toggle('show', totalSizeMB() > MAX_TOTAL_MB);
+}
+
+function renderGrid() {
+    previewGrid.innerHTML = '';
+    selectedFiles.forEach((file, idx) => {
+        const isVideo = file.type.startsWith('video/');
+        const url = URL.createObjectURL(file);
+        const thumb = document.createElement('div');
+        thumb.className = 'preview-thumb';
+        thumb.innerHTML = (isVideo
+            ? `<video src="${url}" muted></video><span class="thumb-video-badge"><i class="fa-solid fa-video"></i> Video</span>`
+            : `<img src="${url}" alt="${file.name}">`)
+            + `<span class="thumb-size">${formatSize(file.size)}</span>`
+            + `<button type="button" class="thumb-remove" data-idx="${idx}" title="Hapus"><i class="fa-solid fa-xmark"></i></button>`;
+        previewGrid.appendChild(thumb);
+    });
+    previewGrid.querySelectorAll('.thumb-remove').forEach(btn => {
+        btn.addEventListener('click', () => {
+            selectedFiles.splice(parseInt(btn.dataset.idx, 10), 1);
+            syncInput(); renderGrid(); updateDropzoneState();
+        });
+    });
+}
+
+function addFiles(fileList) {
+    for (const file of fileList) {
+        if (selectedFiles.length >= MAX_FILES) break;
+        const isVideo = file.type.startsWith('video/');
+        const isImage = file.type.startsWith('image/');
+        if (!isVideo && !isImage) continue;
+        const isDuplicate = selectedFiles.some(f => f.name === file.name && f.size === file.size);
+        if (isDuplicate) continue;
+        selectedFiles.push(file);
     }
-    document.getElementById('previewName').textContent = file.name;
-    document.getElementById('previewSize').textContent = formatSize(file.size);
-    previewWrap.classList.add('show');
-    dropzone.style.display = 'none';
+    syncInput(); renderGrid(); updateDropzoneState();
 }
-function resetDropzone() {
-    fotoInput.value = ''; previewImg.src = ''; previewVideo.src = '';
-    previewWrap.classList.remove('show');
-    dropzone.style.display = '';
-}
-fotoInput.addEventListener('change', () => { if (fotoInput.files[0]) showPreview(fotoInput.files[0]); });
-document.getElementById('previewRemove').addEventListener('click', resetDropzone);
+
+fotoInput.addEventListener('change', () => addFiles(fotoInput.files));
 dropzone.addEventListener('dragover', e => { e.preventDefault(); dropzone.classList.add('dragover'); });
 dropzone.addEventListener('dragleave', () => dropzone.classList.remove('dragover'));
 dropzone.addEventListener('drop', e => {
     e.preventDefault(); dropzone.classList.remove('dragover');
-    const file = e.dataTransfer.files[0];
-    if (file) { const dt = new DataTransfer(); dt.items.add(file); fotoInput.files = dt.files; showPreview(file); }
+    addFiles(e.dataTransfer.files);
 });
 </script>
 @endpush
